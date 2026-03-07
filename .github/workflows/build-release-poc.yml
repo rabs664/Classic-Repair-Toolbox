@@ -489,9 +489,6 @@ jobs:
 
             echo "Do note that all versions come with .NET embedded, which means you do not need to install any .NET runtime for this. It also does mean, that it will always use this exact same .NET version, even if your OS has a newer version. Most versions uses the newest available LTS (Long-Term Support) at time of release, but the **Windows x86 is self-contained with .NET6** to be able to support older versions like Windows 7."
             echo ""
-            echo "> [!CAUTION]"
-            echo "> .NET6 has gone **End-of-Life in 2024**, and has not received any security hotfixes since then!"
-            echo ""
             echo "You only need to install the **Classic Repair Toolbox** application once, and thereafter you can update directly from inside the application."
             
             echo EOF
