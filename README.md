@@ -164,19 +164,21 @@ There are of course more details to this, but please let me know if this does _n
 
 ### Compiling for Linux
 
-Here is a rudimentary guide to compile _CRT_ on Linux.
+Here is a rudimentary guide to compile _CRT_ on Linux. 
 
-For **Fedora** try this:
+Common for all:
+- Make sure .NET10 SDK is installed.
+  - Download from here, https://dotnet.microsoft.com/en-us/download/dotnet/10.0
 - Fork the _CRT_ GitHub repository
 - Clone the fork to your local computer
-- Make sure .NET 10 SDK is installed
-  - Download from here, https://dotnet.microsoft.com/en-us/download/dotnet/10.0
+
+Specific for **Fedora** try this:
 - Compile RELEASE build
   - `dotnet publish -c Release -f net10.0 --self-contained`
 - Run application:  
   - `./bin/Debug/net10.0/Classic-Repair-Toolbox`
 
-For **Gentoo** try this:
+Specific for **Gentoo** try this:
 - Show all available .NET SDL versions
   - `eselect dotnet list`
 - Choose .NET10 SDL, which is profile (1) in this example
