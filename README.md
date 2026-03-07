@@ -22,6 +22,7 @@ It is (for now) primarily dedicated to Commodore, and have a few built-in profil
 - [Contact developer](#contact-developer)
 - [Technical topics](#technical-topics)
 - [Information automatically collected by CRT](#information-automatically-collected-by-crt)
+- [Commandline parameters](#commandline-parameters)
 - [How to contribute with data to CRT GitHub repository?](#how-to-contribute-with-data-to-crt-github-repository)
 - [Compiling for Linux](#compiling-for-linux)
 - [Development tools used](#development-tools-used)
@@ -132,6 +133,17 @@ I want to be transparent here, and inform that I am gathering information about 
 I am allowing myself to gather this data for me to build the [CRT Fun facts](https://commodore-repair-toolbox.dk/funfacts/) page, which is some statistics on usage. As a developer, this is a personal motivational point to see countries using my application and of course one always hope for that "upwards trend usage"... which never happens 🤣 I find this limited non-personal data a fair amount to "pay" for using this application, taking in consideration of the effort being put in to this.
 
 
+### Commandline parameters
+
+_CRT_ supports currently only a single commandline parameter, where you can specify which data folder you want to use. The data folder is where it place all its files that can be fetched from its online source, and as this can be a lot of data, then maybe in some cases it could be useful to save this somewhere else.
+
+If the path does not exists, it will try and create it.
+
+Parameter examples:
+- `--data-root=/mydata/crt`
+- `--data-root="D:\My Folder With Spaces\"`
+
+
 ### How to contribute with data to CRT GitHub repository?
 
 One possibility to contribute data is by submitting it directly to the GitHub repository, and in this way you will also be seen as a contributor. There are are some basic steps that you can follow, if you want to contribute data to CRT. It is quite easy, but it does require you have a GitHub account.
@@ -152,16 +164,35 @@ There are of course more details to this, but please let me know if this does _n
 
 ### Compiling for Linux
 
-Here is a rudimentary guide to compile _CRT_ on Linux - the below is based on Fedora 43, and there can probably be variations depending on your setup.
+Here is a rudimentary guide to compile _CRT_ on different Linux systems.
 
+Common for all:
+- Make sure .NET10 SDK is installed.
+  - Download from here, https://dotnet.microsoft.com/en-us/download/dotnet/10.0
 - Fork the _CRT_ GitHub repository
 - Clone the fork to your local computer
-- Make sure .NET 10 SDK is installed
-  - Download from here, https://dotnet.microsoft.com/en-us/download/dotnet/10.0
+
+Specific for **Fedora** try this:
 - Compile RELEASE build
   - `dotnet publish -c Release -f net10.0 --self-contained`
 - Run application:  
   - `./bin/Debug/net10.0/Classic-Repair-Toolbox`
+
+Specific for **Gentoo** try this:
+- Show all available .NET SDK versions
+  - `eselect dotnet list`
+- Choose .NET10 SDK, which is profile (1) in this example
+  - `eselect dotnet set 1`
+- Reload system environment variables
+  - `. /etc/profile`
+- Verify the active .NET SDK
+  - `dotnet --list-sdks`
+- Compile RELEASE build
+  - `dotnet publish -c Release -f net10.0 --self-contained`
+- Run application:
+  - `bin/Release/net10.0/linux-x64/Classic-Repair-Toolbox`
+
+Note that it is recommened you always create a `RELEASE` version, as it otherwise will not check for a new version online. If this is a `DEBUG` build, it will always show-case a dummy update, to visualize the UI for it.
 
 
 ### Development tools used
@@ -184,4 +215,20 @@ After a year with _CRT_ and due to several questions about "_is it Windows only_
 
 ## Screenshots
 
-To come when version **1.0.0** gets released ...
+Main schematics:
+<img width="902" height="555" alt="image" src="https://github.com/user-attachments/assets/ec67b241-2e08-46c8-ac27-21c17c795d1a" />
+
+Overview where a lot of component information is garthered:
+<img width="902" height="555" alt="image" src="https://github.com/user-attachments/assets/8db1fab6-55cc-45de-bfa0-3892f3145490" />
+
+Resources relevant to the hardware and board:
+<img width="902" height="555" alt="image" src="https://github.com/user-attachments/assets/bcb695c7-a7e3-414e-8ed0-cd7f43337ac4" />
+
+Configuration options:
+<img width="902" height="555" alt="image" src="https://github.com/user-attachments/assets/06f6a331-5d8a-4766-be01-ad9ee5be2d1a" />
+
+Doing a few manual traces:
+<img width="902" height="727" alt="image" src="https://github.com/user-attachments/assets/8291d990-5a20-4c8b-a537-fc5075a3235c" />
+
+Component information popup:
+<img width="902" height="580" alt="image" src="https://github.com/user-attachments/assets/ec811492-7c13-4542-bc80-a9479ba0d315" />
