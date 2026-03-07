@@ -22,6 +22,7 @@ It is (for now) primarily dedicated to Commodore, and have a few built-in profil
 - [Contact developer](#contact-developer)
 - [Technical topics](#technical-topics)
 - [Information automatically collected by CRT](#information-automatically-collected-by-crt)
+- [Commandline parameters](#commandline-parameters)
 - [How to contribute with data to CRT GitHub repository?](#how-to-contribute-with-data-to-crt-github-repository)
 - [Compiling for Linux](#compiling-for-linux)
 - [Development tools used](#development-tools-used)
@@ -132,6 +133,17 @@ I want to be transparent here, and inform that I am gathering information about 
 I am allowing myself to gather this data for me to build the [CRT Fun facts](https://commodore-repair-toolbox.dk/funfacts/) page, which is some statistics on usage. As a developer, this is a personal motivational point to see countries using my application and of course one always hope for that "upwards trend usage"... which never happens 🤣 I find this limited non-personal data a fair amount to "pay" for using this application, taking in consideration of the effort being put in to this.
 
 
+### Commandline parameters
+
+_CRT_ supports currently only a single commandline parameter, where you can specify which data folder you want to use. The data folder is where it place all its files that can be fetched from its online source, and as this can be a lot of data, then maybe in some cases it could be useful to save this somewhere else.
+
+If the path does not exists, it will try and create it.
+
+Parameter examples:
+- `--data-root=/mydata/crt`
+- `--data-root="D:\My Folder With Spaces\"`
+
+
 ### How to contribute with data to CRT GitHub repository?
 
 One possibility to contribute data is by submitting it directly to the GitHub repository, and in this way you will also be seen as a contributor. There are are some basic steps that you can follow, if you want to contribute data to CRT. It is quite easy, but it does require you have a GitHub account.
@@ -162,6 +174,8 @@ Here is a rudimentary guide to compile _CRT_ on Linux - the below is based on Fe
   - `dotnet publish -c Release -f net10.0 --self-contained`
 - Run application:  
   - `./bin/Debug/net10.0/Classic-Repair-Toolbox`
+
+Note that it is recommened that you always create a RELEASE version, as it otherwise will not check for a new version online.
 
 
 ### Development tools used
