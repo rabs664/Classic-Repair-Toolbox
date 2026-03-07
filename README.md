@@ -179,9 +179,9 @@ Specific for **Fedora** try this:
   - `./bin/Debug/net10.0/Classic-Repair-Toolbox`
 
 Specific for **Gentoo** try this:
-- Show all available .NET SDL versions
+- Show all available .NET SDK versions
   - `eselect dotnet list`
-- Choose .NET10 SDL, which is profile (1) in this example
+- Choose .NET10 SDK, which is profile (1) in this example
   - `eselect dotnet set 1`
 - Reload system environment variables
   - `. /etc/profile`
