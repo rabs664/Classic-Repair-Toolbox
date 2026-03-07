@@ -164,7 +164,7 @@ There are of course more details to this, but please let me know if this does _n
 
 ### Compiling for Linux
 
-Here is a rudimentary guide to compile _CRT_ on Linux. 
+Here is a rudimentary guide to compile _CRT_ on different Linux systems.
 
 Common for all:
 - Make sure .NET10 SDK is installed.
