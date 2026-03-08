@@ -9,7 +9,7 @@ The project is a direct spin-off from an older project, **Commodore Repair Toolb
 
 With _CRT_ you can easily view technical schematics, zoom, identify components, view chip pinouts, do manual circuit tracing, study datasheets, view oscilloscope images, ressources and various other information, helping you diagnosing and repairing old vintage hardware.
 
-It is (for now) primarily dedicated to Commodore, and have a few built-in profiles for Commodore computers, but it can support any kind of hardware, as you can add your own data - e.g. other computers, radios, DIY electronics or whatever else you can imagine. It probably works the best, if the hardware is "simple" and have good documentation available, like schematics, and if it is something you need to revisit multiple times - then you can add the needed information yourself, and use it for easy future reference.
+It is (for now) primarily dedicated to Commodore, and have several built-in profiles for Commodore computers and it has a single Amstrad computer also, but it can support any kind of hardware, as you can add your own data - e.g. other computers, radios, DIY electronics or whatever else you can imagine. It probably works the best, if the hardware is "simple" and have good documentation available, like schematics, and if it is something you need to revisit multiple times - then you can add the needed information yourself, and use it for easy future reference.
 
 
 ## Table of Contents
@@ -43,6 +43,8 @@ When a new version is released, you can update directly from within the applicat
 
 ## Built-in hardware and boards
 
+- **Amstrad CPC 664**
+  - MC0005A
 - **Commodore VIC-20**
   - 250403 (CR)
     - Would appreciate help with:
@@ -73,8 +75,7 @@ When a new version is released, you can update directly from within the applicat
 
 ### Data contributions being worked on currently
 
-- Amstrad CPC 664
-  - "Rabs" is working on this new board (updated 2026-March-7)
+- None to my knowledge - please let me know, if you are cooking up something
     
 
 ## Requirements
