@@ -16,22 +16,22 @@
 
 		<!-- PAL active -->
 		<Style Selector="Button#PalRegionButton.RegionToggle.active">
-			<Setter Property="Foreground" Value="{DynamicResource Region_PAL_Fg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_PAL_Bg}" />
+			<Setter Property="Foreground" Value="{DynamicResource Schematics_Region_PAL_Fg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_PAL_Bg}" />
 		</Style>
 		<Style Selector="Button#PalRegionButton.RegionToggle.active /template/ ContentPresenter">
-			<Setter Property="Background" Value="{DynamicResource Region_PAL_Bg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_PAL_Bg}" />
+			<Setter Property="Background" Value="{DynamicResource Schematics_Region_PAL_Bg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_PAL_Bg}" />
 		</Style>
 
 		<!-- NTSC active -->
 		<Style Selector="Button#NtscRegionButton.RegionToggle.active">
-			<Setter Property="Foreground" Value="{DynamicResource Region_NTSC_Fg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_NTSC_Bg}" />
+			<Setter Property="Foreground" Value="{DynamicResource Schematics_Region_NTSC_Fg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_NTSC_Bg}" />
 		</Style>
 		<Style Selector="Button#NtscRegionButton.RegionToggle.active /template/ ContentPresenter">
-			<Setter Property="Background" Value="{DynamicResource Region_NTSC_Bg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_NTSC_Bg}" />
+			<Setter Property="Background" Value="{DynamicResource Schematics_Region_NTSC_Bg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_NTSC_Bg}" />
 		</Style>
 	</Window.Styles>
 
@@ -77,37 +77,37 @@
 								Margin="6,6,0,0"
 								Spacing="4">
 						<Border x:Name="InfoPinBorder"
-                                Background="Khaki"
-                                BorderBrush="Black"
+                                Background="{DynamicResource ComponentPopup_OverlayKhaki_Bg}"
+                                BorderBrush="{DynamicResource ComponentPopup_OverlayKhaki_Border}"
                                 BorderThickness="1"
                                 CornerRadius="2"
                                 Padding="5,2"
                                 IsVisible="False">
 							<TextBlock x:Name="InfoPinText"
-                                       FontSize="11"
-                                       Foreground="Black" />
+						               FontSize="11"
+						               Foreground="{DynamicResource ComponentPopup_OverlayKhaki_Fg}" />
 						</Border>
 						<Border x:Name="InfoNameBorder"
-                                Background="Khaki"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                CornerRadius="2"
-                                Padding="5,2"
-                                IsVisible="False">
+								Background="{DynamicResource ComponentPopup_OverlayKhaki_Bg}"
+								BorderBrush="{DynamicResource ComponentPopup_OverlayKhaki_Border}"
+								BorderThickness="1"
+								CornerRadius="2"
+								Padding="5,2"
+								IsVisible="False">
 							<TextBlock x:Name="InfoNameText"
-                                       FontSize="11"
-                                       Foreground="Black" />
+						               FontSize="11"
+						               Foreground="{DynamicResource ComponentPopup_OverlayKhaki_Fg}" />
 						</Border>
 						<Border x:Name="InfoOscBorder"
-                                Background="#B0D8EC"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                CornerRadius="2"
-                                Padding="5,2"
-                                IsVisible="False">
+								Background="{DynamicResource ComponentPopup_OverlayOsc_Bg}"
+								BorderBrush="{DynamicResource ComponentPopup_OverlayOsc_Border}"
+								BorderThickness="1"
+								CornerRadius="2"
+								Padding="5,2"
+								IsVisible="False">
 							<TextBlock x:Name="InfoOscText"
-                                       FontSize="11"
-                                       Foreground="Black" />
+						               FontSize="11"
+						               Foreground="{DynamicResource ComponentPopup_OverlayOsc_Fg}" />
 						</Border>
 						<Border x:Name="InfoRegionBorder"
                                 BorderBrush="{DynamicResource AppThemeBorderBrush}"
@@ -120,37 +120,37 @@
 						</Border>
 					</StackPanel>
 
-					<!-- Bottom-left image counter overlay; shown only when there are 2+ images -->
+					<!-- Bottom-left image counter overlay -->
 					<Border x:Name="ImageCounterBorder"
-                            VerticalAlignment="Bottom"
+							VerticalAlignment="Bottom"
                             HorizontalAlignment="Left"
                             Margin="6,0,0,6"
-                            Background="#BB000000"
-                            BorderBrush="Black"
-                            BorderThickness="1"
+							Background="{DynamicResource ComponentPopup_ImageCounter_Bg}"
+							BorderBrush="{DynamicResource ComponentPopup_ImageCounter_Border}"
+							BorderThickness="1"
                             CornerRadius="2"
                             Padding="5,2"
                             IsVisible="False">
 						<TextBlock x:Name="ImageCounterText"
-                                   FontSize="11"
-                                   Foreground="White" />
+					               FontSize="11"
+					               Foreground="{DynamicResource ComponentPopup_ImageCounter_Fg}" />
 					</Border>
 
-					<!-- Center: pin jump confirmation flash; shown briefly when the user types a pin number -->
+					<!-- Center: pin jump confirmation flash -->
 					<Border x:Name="PinFlashBorder"
-                            HorizontalAlignment="Center"
+							HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Background="{DynamicResource ComponentPopup_KeyboardTyping_Bg}"
-                            BorderBrush="Black"
+							Background="{DynamicResource ComponentPopup_KeyboardTyping_Bg}"
+							BorderBrush="{DynamicResource ComponentPopup_Flash_Border}"
                             BorderThickness="1"
                             CornerRadius="6"
                             Padding="20,10"
                             IsHitTestVisible="False"
                             IsVisible="False">
 						<TextBlock x:Name="PinFlashText"
-						   FontSize="36"
-						   FontWeight="Bold"
-						   Foreground="{DynamicResource ComponentPopup_KeyboardTyping_Fg}" />
+						           FontSize="36"
+						           FontWeight="Bold"
+						           Foreground="{DynamicResource ComponentPopup_KeyboardTyping_Fg}" />
 					</Border>
 				</Grid>
 			</Border>
@@ -226,14 +226,14 @@
 											VerticalAlignment="Top"
 											HorizontalAlignment="Left"
 											Margin="3,3,0,0"
-											Background="Khaki"
-											BorderBrush="DarkKhaki"
+											Background="{DynamicResource ComponentPopup_OverlayKhaki_Bg}"
+											BorderBrush="{DynamicResource ComponentPopup_OverlayDarkKhaki_Border}"
 											BorderThickness="1"
 											CornerRadius="2"
 											Padding="3,1">
 										<TextBlock Text="{Binding Label}"
 												   FontSize="9"
-												   Foreground="Black" />
+												   Foreground="{DynamicResource ComponentPopup_OverlayKhaki_Fg}" />
 									</Border>
 								</Grid>
 

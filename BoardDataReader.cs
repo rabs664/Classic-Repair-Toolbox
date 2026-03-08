@@ -95,7 +95,7 @@ namespace CRT
 
             if (!File.Exists(excelPath))
             {
-                Logger.Warning($"Board Excel file not found - [{excelPath}]");
+                Logger.Warning($"Board Excel file not found: [{excelPath}]");
                 return null;
             }
 

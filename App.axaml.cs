@@ -52,6 +52,11 @@ namespace CRT
         // Used by: TraceStorage.LoadFromFile
         public const string TracesFileName = "Classic-Repair-Toolbox.traces.json";
 
+        // Prefix and suffix for the versioned main Excel file containing hardware definitions.
+        // Used by: DataManager.InitializeAsync, DataManager.LoadMainExcel
+        public const string MainExcelFileNamePrefix = "Classic-Repair-Toolbox.v";
+        public const string MainExcelFileSuffix = ".xlsx";
+
         // Name of the main Excel file containing all hardware and board definitions.
         // Used by: DataManager.InitializeAsync, DataManager.LoadMainExcel
         public const string MainExcelFileName = "Classic-Repair-Toolbox.xlsx";

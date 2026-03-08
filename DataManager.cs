@@ -22,8 +22,11 @@ namespace CRT
         private static List<DataFileEntry>? _syncManifest;
 
         public static string DataRoot => _dataRoot;
-//        public static List<HardwareBoardEntry> HardwareBoards { get; private set; } = [];
+        //        public static List<HardwareBoardEntry> HardwareBoards { get; private set; } = [];
         public static List<HardwareBoardEntry> HardwareBoards { get; private set; } = new(); // compliant with .NET6
+
+        public static string ResolvedMainExcelFileName { get; private set; } = string.Empty;
+        public static bool DataUpdateRequiresAppUpdate { get; private set; }
 
         // Raised with a general status message (e.g. "Checking files...", "Sync complete")
         public static event Action<string>? StatusChanged;
@@ -67,6 +70,19 @@ namespace CRT
                 Logger.Info("Checking online source for new or updated files");
             }
 
+            // Determine from local files initially (fallback if offline)
+            var localFiles = Directory.EnumerateFiles(_dataRoot)
+                .Select(Path.GetFileName)
+                .Where(f => !string.IsNullOrEmpty(f))
+                .Cast<string>();
+
+            DetermineResolvedMainExcel(localFiles);
+
+            // Preserve the local "newer version exists" state.
+            // The online manifest may refine which file should be synced,
+            // but it must not clear a newer version already detected locally.
+            bool localDataUpdateRequiresAppUpdate = DataUpdateRequiresAppUpdate;
+
 #if DEBUG
             if (!AppConfig.DebugSimulateSync)
             {
@@ -82,11 +98,22 @@ namespace CRT
 
                     if (_syncManifest != null)
                     {
-                        // Sync only the main Excel file first — one exact match, no manifest scan
+                        // Use a dummy filter run to harvest the file names natively through the delegate 
+                        // (ensures we get the exact string field the Sync tool operates on without guessing properties)
+                        var onlineFileNames = new List<string>();
+                        await OnlineServices.SyncFilesAsync(_syncManifest, string.Empty, f => { onlineFileNames.Add(f); return false; }, null, null);
+
+                        DetermineResolvedMainExcel(onlineFileNames);
+
+                        // Keep the local warning state even if the online manifest does not list
+                        // the same newer main Excel file already present on disk.
+                        DataUpdateRequiresAppUpdate |= localDataUpdateRequiresAppUpdate;
+
+                        // Sync only the resolved versioned main Excel file first — one exact match
                         RaiseStatus("Checking main data file...");
                         await OnlineServices.SyncFilesAsync(
                             _syncManifest, _dataRoot,
-                            f => string.Equals(f, AppConfig.MainExcelFileName, StringComparison.OrdinalIgnoreCase),
+                            f => string.Equals(f, ResolvedMainExcelFileName, StringComparison.OrdinalIgnoreCase),
                             RaiseStatus, RaiseFileDownload,
                             label: "Main Excel data file");
                     }
@@ -98,6 +125,14 @@ namespace CRT
 #if DEBUG
             }
 #endif
+
+            if (DataUpdateRequiresAppUpdate)
+            {
+                Logger.Warning("Newer main Excel data file versions exist, but an application update is required to utilize them");
+                RaiseStatus("Data components outdated - application update required!");
+            }
+
+            Logger.Info($"Resolved main Excel data file to be used: [{ResolvedMainExcelFileName}]");
 
             // Load main Excel now — HardwareBoards is populated from this point on
             RaiseStatus("Loading hardware definitions...");
@@ -152,6 +187,57 @@ namespace CRT
         }
 
         // ###########################################################################################
+        // Parses available file lists to find the highest compatible version of the main Excel file.
+        // ###########################################################################################
+        private static void DetermineResolvedMainExcel(IEnumerable<string> availableFiles)
+        {
+            Version appVer = Version.TryParse(AppConfig.AppVersionString, out var v) ? v : new Version(0, 0, 0, 0);
+
+            Version? bestVer = null;
+            string bestFile = string.Empty;
+            bool newerExists = false;
+
+            foreach (var fullPath in availableFiles)
+            {
+                // Ensure any directory prefixes from manifest strings are ignored
+                string file = Path.GetFileName(fullPath);
+
+                if (file.StartsWith(AppConfig.MainExcelFileNamePrefix, StringComparison.OrdinalIgnoreCase) &&
+                    file.EndsWith(AppConfig.MainExcelFileSuffix, StringComparison.OrdinalIgnoreCase))
+                {
+                    string versionPart = file.Substring(
+                        AppConfig.MainExcelFileNamePrefix.Length,
+                        file.Length - AppConfig.MainExcelFileNamePrefix.Length - AppConfig.MainExcelFileSuffix.Length);
+
+                    if (Version.TryParse(versionPart, out var fileVer))
+                    {
+                        if (fileVer <= appVer)
+                        {
+                            if (bestVer == null || fileVer > bestVer)
+                            {
+                                bestVer = fileVer;
+                                bestFile = fullPath; // Preserve the original path for sync
+                            }
+                        }
+                        else
+                        {
+                            newerExists = true;
+                        }
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(bestFile))
+            {
+                // Fallback looking for legacy unversioned file if no versioned ones exist
+                bestFile = AppConfig.MainExcelFileName;
+            }
+
+            ResolvedMainExcelFileName = bestFile;
+            DataUpdateRequiresAppUpdate = newerExists;
+        }
+
+        // ###########################################################################################
         // Recursively copies all files and subdirectories from source into destination.
         // ###########################################################################################
         private static void CopyDirectory(string source, string destination)
@@ -188,7 +274,13 @@ namespace CRT
         // ###########################################################################################
         private static void LoadMainExcel()
         {
-            var excelPath = Path.Combine(_dataRoot, AppConfig.MainExcelFileName);
+            if (string.IsNullOrEmpty(ResolvedMainExcelFileName))
+            {
+                Logger.Warning("No compatible main Excel data file matched the current application version.");
+                return;
+            }
+
+            var excelPath = Path.Combine(_dataRoot, ResolvedMainExcelFileName);
 
             if (!File.Exists(excelPath))
             {

@@ -136,7 +136,7 @@ namespace CRT
 
                 if (success)
                 {
-                    this.ShowStatus("Feedback submitted successfully. Thank you :-)", isError: false);
+                    this.ShowStatus("Feedback submitted successfully - thank you :-)", isError: false);
                     this.FeedbackTextBox.Text = string.Empty;
                     this._customAttachments.Clear();
                     this.AttachLogfileCheckBox.IsChecked = false;
@@ -150,18 +150,18 @@ namespace CRT
                     // Show a clean, user-friendly error in the UI
                     if (statusCode == 404)
                     {
-                        this.ShowStatus("Failed to send feedback: Server endpoint not found (HTTP 404).", isError: true);
+                        this.ShowStatus("Failed to send feedback: Server endpoint not found (HTTP 404)", isError: true);
                     }
                     else
                     {
-                        this.ShowStatus($"Failed to send feedback (HTTP {(int)statusCode}). Please check the logfile for details.", isError: true);
+                        this.ShowStatus($"Failed to send feedback (HTTP {(int)statusCode}) - please check the logfile for details", isError: true);
                     }
                 }
             }
             catch (Exception ex)
             {
                 Logger.Warning($"Exception while sending feedback: {ex.ToString()}");
-                this.ShowStatus("Network or system error while sending feedback. Please try again later.", isError: true);
+                this.ShowStatus("Network or system error while sending feedback - please try again later...", isError: true);
             }
             finally
             {
@@ -177,7 +177,19 @@ namespace CRT
             Dispatcher.UIThread.Post(() =>
             {
                 this.StatusTextBlock.Text = message;
-                this.StatusTextBlock.Foreground = isError ? Avalonia.Media.Brushes.OrangeRed : Avalonia.Media.Brushes.LightGreen;
+
+                // Toggle the pseudo-classes to let XAML styles handle the color
+                if (isError)
+                {
+                    this.StatusTextBlock.Classes.Add("error");
+                    this.StatusTextBlock.Classes.Remove("success");
+                }
+                else
+                {
+                    this.StatusTextBlock.Classes.Add("success");
+                    this.StatusTextBlock.Classes.Remove("error");
+                }
+
                 this.StatusTextBlock.IsVisible = true;
             });
         }

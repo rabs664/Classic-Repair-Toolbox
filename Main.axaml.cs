@@ -41,6 +41,7 @@ namespace CRT
 
         // Region toggle: local override, does not affect the global setting
         private string _localRegion = UserSettings.Region;
+        public string LocalRegion => this._localRegion;
         private bool _suppressRegionToggle;
 
         public Main()
@@ -168,6 +169,14 @@ namespace CRT
             {
                 this.CheckForAppUpdate();
             }
+            else if (DataManager.DataUpdateRequiresAppUpdate)
+            {
+                // Notify if they aren't checking for app updates but missing critical data updates
+                this.UpdateBannerText.Text = "Newer main Excel data file is available, but requires a newer application version. No more data updates will be given for this version.";
+                this.UpdateBannerInstallButton.IsVisible = false;
+                this.UpdateBannerViewNotesButton.IsVisible = false;
+                this.UpdateBanner.IsVisible = true;
+            }
 
             this.StartBackgroundSyncAsync();
         }
@@ -182,6 +191,14 @@ namespace CRT
             if (available == true)
             {
                 this.UpdateBannerText.Text = $"Version {UpdateService.PendingVersion} is available";
+                this.UpdateBanner.IsVisible = true;
+            }
+            else if (DataManager.DataUpdateRequiresAppUpdate)
+            {
+                // App Velopack doesn't see an update, but manifest demands one.
+                this.UpdateBannerText.Text = "Newer main Excel data file is available, but requires a newer application version. No more data updates will be given for this version.";
+                this.UpdateBannerInstallButton.IsVisible = false;
+                this.UpdateBannerViewNotesButton.IsVisible = false;
                 this.UpdateBanner.IsVisible = true;
             }
         }
@@ -995,6 +1012,7 @@ namespace CRT
             this._localRegion = "PAL";
             this.UpdateRegionButtonsState();
             this.RefreshImages();
+            this.TabSchematicsControl.UpdateOverlayLabels();
         }
 
         // ###########################################################################################
@@ -1007,6 +1025,7 @@ namespace CRT
             this._localRegion = "NTSC";
             this.UpdateRegionButtonsState();
             this.RefreshImages();
+            this.TabSchematicsControl.UpdateOverlayLabels();
         }
 
         // ###########################################################################################

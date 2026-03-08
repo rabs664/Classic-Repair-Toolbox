@@ -34,25 +34,30 @@
 		</Style>
 
 		<!-- Banner install button: explicit hover/pressed backgrounds -->
-		<Style Selector="Button.BannerInstallButton /template/ ContentPresenter">
+		<Style Selector="Button.BannerInstallButton">
 			<Setter Property="Background" Value="{DynamicResource AppThemeAccentBrush}" />
 		</Style>
-		<Style Selector="Button.BannerInstallButton:pointerover /template/ ContentPresenter">
+		<Style Selector="Button.BannerInstallButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource AppThemeAccentHoverBrush}" />
 		</Style>
-		<Style Selector="Button.BannerInstallButton:pressed /template/ ContentPresenter">
+		<Style Selector="Button.BannerInstallButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource AppThemeAccentPressedBrush}" />
 		</Style>
 
 		<!-- Banner dismiss button: subtle hover on dark background -->
-		<Style Selector="Button.BannerDismissButton /template/ ContentPresenter">
+		<Style Selector="Button.BannerDismissButton">
+			<Setter Property="Foreground" Value="{DynamicResource AppThemeBannerTextBrush}" />
 			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
 		</Style>
-		<Style Selector="Button.BannerDismissButton:pointerover /template/ ContentPresenter">
-			<Setter Property="Background" Value="{DynamicResource AppThemeBannerDismissHoverBrush}" />
+		<Style Selector="Button.BannerDismissButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource MainBannerHover_Bg}" />
+			<Setter Property="Foreground" Value="{DynamicResource MainBannerHover_Fg}" />
 		</Style>
-		<Style Selector="Button.BannerDismissButton:pressed /template/ ContentPresenter">
+		<Style Selector="Button.BannerDismissButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource AppThemeBannerDismissPressedBrush}" />
+			<!-- Stay standard text color when clicking -->
+			<Setter Property="Foreground" Value="{DynamicResource AppThemeBannerTextBrush}" />
 		</Style>
 
 		<!-- Region toggle buttons -->
@@ -62,22 +67,22 @@
 
 		<!-- PAL active -->
 		<Style Selector="Button#PalRegionButton.RegionToggle.active">
-			<Setter Property="Foreground" Value="{DynamicResource Region_PAL_Fg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_PAL_Bg}" />
+			<Setter Property="Foreground" Value="{DynamicResource Schematics_Region_PAL_Fg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_PAL_Bg}" />
 		</Style>
 		<Style Selector="Button#PalRegionButton.RegionToggle.active /template/ ContentPresenter">
-			<Setter Property="Background" Value="{DynamicResource Region_PAL_Bg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_PAL_Bg}" />
+			<Setter Property="Background" Value="{DynamicResource Schematics_Region_PAL_Bg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_PAL_Bg}" />
 		</Style>
 
 		<!-- NTSC active -->
 		<Style Selector="Button#NtscRegionButton.RegionToggle.active">
-			<Setter Property="Foreground" Value="{DynamicResource Region_NTSC_Fg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_NTSC_Bg}" />
+			<Setter Property="Foreground" Value="{DynamicResource Schematics_Region_NTSC_Fg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_NTSC_Bg}" />
 		</Style>
 		<Style Selector="Button#NtscRegionButton.RegionToggle.active /template/ ContentPresenter">
-			<Setter Property="Background" Value="{DynamicResource Region_NTSC_Bg}" />
-			<Setter Property="BorderBrush" Value="{DynamicResource Region_NTSC_Bg}" />
+			<Setter Property="Background" Value="{DynamicResource Schematics_Region_NTSC_Bg}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Schematics_Region_NTSC_Bg}" />
 		</Style>
 
 		<!-- Credits contact link button -->
@@ -340,12 +345,12 @@
 
 				<!-- Update notification banner -->
 				<Border x:Name="UpdateBanner"
-						Grid.Row="0"
-						IsVisible="False"
-						Background="{DynamicResource AppThemeBannerBackgroundBrush}"
-						CornerRadius="4"
-						Margin="0,8,0,4"
-						Padding="12,6">
+									Grid.Row="0"
+									IsVisible="False"
+									Background="{DynamicResource AppThemeBannerBackgroundBrush}"
+									CornerRadius="4"
+									Margin="0,8,0,4"
+									Padding="12,6">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*" />
@@ -366,7 +371,6 @@
 								Content="View release notes"
 								Margin="12,0,4,0"
 								Background="Transparent"
-								Foreground="{DynamicResource AppThemeBannerTextBrush}"
 								FontSize="11"
 								Padding="6,3"
 								Click="OnViewReleaseNotesClick" />
@@ -387,7 +391,6 @@
 								Classes="BannerDismissButton"
 								Content="✕"
 								Background="Transparent"
-								Foreground="{DynamicResource AppThemeBannerTextBrush}"
 								FontSize="11"
 								Padding="6,3"
 								Click="OnUpdateBannerDismiss" />
@@ -396,14 +399,14 @@
 
 				<!-- Data sync notification banner -->
 				<Border x:Name="SyncBanner"
-								Grid.Row="1"
-								IsVisible="False"
-								Background="{DynamicResource AppThemeBannerBackgroundBrush}"
-								CornerRadius="4"
-								Margin="0,0,0,4"
-								Padding="12,6"
-								Cursor="Hand"
-								PointerPressed="OnSyncBannerPointerPressed">
+											Grid.Row="1"
+											IsVisible="False"
+											Background="{DynamicResource AppThemeBannerBackgroundBrush}"
+											CornerRadius="4"
+											Margin="0,0,0,4"
+											Padding="12,6"
+											Cursor="Hand"
+											PointerPressed="OnSyncBannerPointerPressed">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*" />
@@ -434,7 +437,6 @@
 								Classes="BannerDismissButton"
 								Content="✕"
 								Background="Transparent"
-								Foreground="{DynamicResource AppThemeBannerTextBrush}"
 								FontSize="11"
 								Padding="6,3"
 								Click="OnSyncBannerDismiss" />

@@ -78,7 +78,7 @@
 
 					<Border x:Name="SchematicsNameBorder"
 							IsVisible="False"
-				Background="{DynamicResource SchematicsName_Bg}"
+				Background="{DynamicResource Schematics_Name_Bg}"
 				BorderBrush="{DynamicResource AppThemeBorderBrush}"
 				BorderThickness="1"
 				CornerRadius="4"
@@ -86,7 +86,7 @@
 						<TextBlock x:Name="SchematicsNameLabel"
 					   FontSize="11"
 					   FontWeight="Normal"
-					   Foreground="{DynamicResource SchematicsName_Fg}" />
+					   Foreground="{DynamicResource Schematics_Name_Fg}" />
 					</Border>
 
 					<Border x:Name="SchematicsRegionBorder"
@@ -107,7 +107,7 @@
 					HorizontalAlignment="Left"
 					VerticalAlignment="Top"
 					Margin="10,44,0,0"
-					Background="{DynamicResource SchematicsComponent_Bg}"
+					Background="{DynamicResource SchematicsSelectedComponent_Bg}"
 					BorderBrush="{DynamicResource AppThemeBorderBrush}"
 					BorderThickness="1"
 					CornerRadius="4"
@@ -115,7 +115,7 @@
 					<TextBlock x:Name="SchematicsHoverLabelText"
 						FontSize="11"
 							   FontWeight="Bold"
-							   Foreground="{DynamicResource SchematicsComponent_Fg}" />
+							   Foreground="{DynamicResource SchematicsSelectedComponent_Fg}" />
 				</Border>
 
 				<!-- LABELS VISIBLE PANEL -->
@@ -123,7 +123,7 @@
 														HorizontalAlignment="Left"
 														VerticalAlignment="Bottom"
 														Margin="10,0,0,10"
-														Background="{DynamicResource SchematicsComponent_Bg}"
+														Background="{DynamicResource SchematicsPanels_Bg}"
 														BorderBrush="{DynamicResource AppThemeBorderBrush}"
 														BorderThickness="1"
 														CornerRadius="4"
@@ -134,7 +134,7 @@
 									   FontSize="11"
 									   VerticalAlignment="Center"
 									   FontWeight="Bold"
-									   Foreground="{DynamicResource SchematicsComponent_Fg}" />
+									   Foreground="{DynamicResource SchematicsPanels_Fg}" />
 							<Button x:Name="ToggleLabelsPanelButton"
 									Content="Collapse"
 									FontSize="9"
@@ -146,28 +146,28 @@
 								<Viewbox Width="20" Height="20" IsHitTestVisible="False">
 									<CheckBox x:Name="CheckLabelBoard" MinHeight="0" Margin="0" Padding="0" CornerRadius="2" IsChecked="False" IsHitTestVisible="False" />
 								</Viewbox>
-								<TextBlock Text="Board label" FontSize="11" Foreground="{DynamicResource SchematicsComponent_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
+								<TextBlock Text="Board label" FontSize="11" Foreground="{DynamicResource SchematicsPanels_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal" Spacing="6" Background="Transparent" Cursor="Hand" PointerPressed="OnLabelTechnicalRowClicked">
 								<Viewbox Width="20" Height="20" IsHitTestVisible="False">
 									<CheckBox x:Name="CheckLabelTechnical" MinHeight="0" Margin="0" Padding="0" CornerRadius="2" IsChecked="False" IsHitTestVisible="False" />
 								</Viewbox>
-								<TextBlock Text="Technical name" FontSize="11" Foreground="{DynamicResource SchematicsComponent_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
+								<TextBlock Text="Technical name" FontSize="11" Foreground="{DynamicResource SchematicsPanels_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal" Spacing="6" Background="Transparent" Cursor="Hand" PointerPressed="OnLabelFriendlyRowClicked">
 								<Viewbox Width="20" Height="20" IsHitTestVisible="False">
 									<CheckBox x:Name="CheckLabelFriendly" MinHeight="0" Margin="0" Padding="0" CornerRadius="2" IsChecked="False" IsHitTestVisible="False" />
 								</Viewbox>
-								<TextBlock Text="Friendly name" FontSize="11" Foreground="{DynamicResource SchematicsComponent_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
+								<TextBlock Text="Friendly name" FontSize="11" Foreground="{DynamicResource SchematicsPanels_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal" Spacing="6" Background="Transparent" Cursor="Hand" PointerPressed="OnLabelSelectedOnlyRowClicked">
 								<Viewbox Width="20" Height="20" IsHitTestVisible="False">
 									<CheckBox x:Name="CheckLabelSelectedOnly" MinHeight="0" Margin="0" Padding="0" CornerRadius="2" IsChecked="False" IsHitTestVisible="False" />
 								</Viewbox>
-								<TextBlock Text="Selected components only" FontSize="11" Foreground="{DynamicResource SchematicsComponent_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
+								<TextBlock Text="Selected components only" FontSize="11" Foreground="{DynamicResource SchematicsPanels_Fg}" VerticalAlignment="Center" IsHitTestVisible="False"/>
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>
@@ -179,7 +179,7 @@
 								HorizontalAlignment="Right"
 								VerticalAlignment="Bottom"
 								Margin="0,0,10,10"
-								Background="{DynamicResource SchematicsComponent_Bg}"
+								Background="{DynamicResource SchematicsPanels_Bg}"
 								BorderBrush="{DynamicResource AppThemeBorderBrush}"
 								BorderThickness="1"
 								CornerRadius="4"
@@ -190,7 +190,7 @@
 									   FontSize="11"
 									   VerticalAlignment="Center"
 									   FontWeight="Bold"
-									   Foreground="{DynamicResource SchematicsComponent_Fg}" />
+									   Foreground="{DynamicResource SchematicsPanels_Fg}" />
 							<Button x:Name="ClearTracesButton"
 									Content="Clear All"
 									FontSize="9"
@@ -215,7 +215,7 @@
 					IsVisible="False"
 					HorizontalAlignment="Left"
 					VerticalAlignment="Top"
-					Background="{DynamicResource SchematicsComponent_Bg}"
+					Background="{DynamicResource SchematicsPanels_Bg}"
 					BorderBrush="{DynamicResource AppThemeBorderBrush}"
 					BorderThickness="1"
 					CornerRadius="8"
@@ -226,7 +226,8 @@
 						<!-- DYNAMIC Color Buttons Array -->
 						<StackPanel x:Name="DynamicPaletteColorsPanel" Orientation="Horizontal" Spacing="10" />
 
-						<Border Width="1" Height="18" Background="{DynamicResource AppThemeBorderBrush}" Margin="2,0"/>
+						<!-- THIS IS THE FIRST DIVIDER -->
+						<Border Width="1" Height="18" Background="{DynamicResource SchematicsPanels_Fg}" Margin="2,0"/>
 
 						<!-- Custom Color Wheel mapped as a perfectly round flyout button -->
 						<Button x:Name="CustomColorButton"
@@ -253,7 +254,8 @@
 							</Button.Flyout>
 						</Button>
 
-						<Border Width="1" Height="18" Background="{DynamicResource AppThemeBorderBrush}" Margin="2,0"/>
+						<!-- THIS IS THE SECOND DIVIDER -->
+						<Border Width="1" Height="18" Background="{DynamicResource SchematicsPanels_Fg}" Margin="2,0"/>
 
 						<!-- Delete Trace Button -->
 						<TextBlock Text="🗑"

@@ -308,28 +308,28 @@ public partial class TabSchematics : UserControl
                 IsHitTestVisible = false
             };
 
-            var borderBrushCandidate = this.TryFindResource("AppThemeBorderBrush", out var res) ? res as IBrush : Brushes.Gray;
-
             var border = new Border
             {
                 Width = 48,
                 Height = 14,
                 Background = new SolidColorBrush(colorItem),
-                BorderBrush = borderBrushCandidate,
                 BorderThickness = new Avalonia.Thickness(1),
                 CornerRadius = new Avalonia.CornerRadius(2),
                 VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
             };
 
-            var textForegroundCandidate = this.TryFindResource("SchematicsComponent_Fg", out var textRes) ? textRes as IBrush : Brushes.Black;
+            // Set DynamicResource for BorderBrush
+            border.Bind(Border.BorderBrushProperty, this.GetResourceObservable("AppThemeBorderBrush"));
 
             var txt = new TextBlock
             {
                 Text = $"({count})",
                 FontSize = 11,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                Foreground = textForegroundCandidate
+                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
             };
+
+            // Set DynamicResource for Foreground
+            txt.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("SchematicsPanels_Fg"));
 
             // Clicking anywhere on the row flips the active status of the checkbox
             row.PointerPressed += (s, e) =>
@@ -572,7 +572,8 @@ public partial class TabSchematics : UserControl
         this.SchematicsNameLabel.Text = schematicName;
         this.SchematicsNameBorder.IsVisible = !string.IsNullOrWhiteSpace(schematicName);
 
-        string rawRegion = UserSettings.Region?.Trim() ?? string.Empty;
+        // Fetch the active local region from the Main window, falling back to UserSettings if not attached
+        string rawRegion = this.MainWindow?.LocalRegion?.Trim() ?? UserSettings.Region?.Trim() ?? string.Empty;
         this.SchematicsRegionLabel.Text = string.IsNullOrWhiteSpace(rawRegion) ? "All Regions" : rawRegion;
         this.SchematicsRegionBorder.IsVisible = this.SchematicsNameBorder.IsVisible;
 
@@ -580,8 +581,8 @@ public partial class TabSchematics : UserControl
 
         string colorPrefix = regionKey switch
         {
-            "PAL" => "Region_PAL",
-            "NTSC" => "Region_NTSC",
+            "PAL" => "Schematics_Region_PAL",
+            "NTSC" => "Schematics_Region_NTSC",
             _ => "SchematicsRegion"
         };
 
@@ -904,8 +905,8 @@ public partial class TabSchematics : UserControl
         var contentRect = this.GetImageContentRect();
 
         var borderBrushCandidate = this.TryFindResource("AppThemeBorderBrush", out var res) ? res as IBrush : Brushes.Gray;
-        var textForegroundCandidate = this.TryFindResource("SchematicsComponent_Fg", out var textRes) ? textRes as IBrush : Brushes.White;
-        var textBackgroundCandidate = this.TryFindResource("SchematicsComponent_Bg", out var bgRes) ? bgRes as IBrush : new SolidColorBrush(Color.Parse("#CC000000"));
+        var textForegroundCandidate = this.TryFindResource("SchematicsPanels_Fg", out var textRes) ? textRes as IBrush : Brushes.White;
+        var textBackgroundCandidate = this.TryFindResource("SchematicsPanels_Bg", out var bgRes) ? bgRes as IBrush : new SolidColorBrush(Color.Parse("#CC000000"));
 
         double currentScale = this.schematicsMatrix.M11;
         double inverseScale = currentScale > 0 ? 1.0 / currentScale : 1.0;
@@ -1386,5 +1387,23 @@ public partial class TabSchematics : UserControl
         if (!TryParseDouble(text, out var v)) return fallback;
         if (v > 1.0) v /= 100.0;
         return Math.Clamp(v, 0.0, 1.0);
+    }
+
+    // ###########################################################################################
+    // Safely resolves visual brushes from global Theme dictionaries, regardless of UI attach state.
+    // ###########################################################################################
+    private IBrush ResolveThemeBrush(string key, IBrush fallback)
+    {
+        if (this.TryFindResource(key, out var localRes) && localRes is IBrush localBrush)
+            return localBrush;
+
+        if (Application.Current != null)
+        {
+            var theme = Application.Current.ActualThemeVariant;
+            if (Application.Current.TryGetResource(key, theme, out var appRes) && appRes is IBrush appBrush)
+                return appBrush;
+        }
+
+        return fallback;
     }
 }

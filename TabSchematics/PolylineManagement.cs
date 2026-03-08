@@ -63,10 +63,7 @@ namespace Classic_Repair_Toolbox.TabSchematics
             }
         }
 
-        public List<Color> PaletteColors { get; private set; } = new()
-        {
-            Colors.Red, Colors.DodgerBlue, Colors.LimeGreen, Colors.Yellow
-        };
+        public List<Color> PaletteColors { get; private set; } = new();
 
         public event Action<Color>? ActiveColorChanged;
         public event Action<List<Color>>? PaletteColorsChanged;
@@ -79,6 +76,50 @@ namespace Classic_Repair_Toolbox.TabSchematics
         {
             this._parent = parent;
             this._canvas = canvas;
+            this.PaletteColors = this.GetDefaultPaletteColors();
+            this.CurrentDrawingColor = this.PaletteColors.FirstOrDefault();
+        }
+
+        // ###########################################################################################
+        // Retrieve theme-aware default colors from the parent control's resources.
+        // ###########################################################################################
+        private List<Color> GetDefaultPaletteColors()
+        {
+            Color GetColor(string key, Color fallback)
+            {
+                object? res = null;
+
+                // 1. Try finding it within the logical tree context
+                if (this._parent.TryFindResource(key, out var parentRes))
+                {
+                    res = parentRes;
+                }
+                // 2. Try global Application scope directly using the actively running Theme
+                else if (Application.Current != null)
+                {
+                    var theme = Application.Current.ActualThemeVariant;
+                    if (Application.Current.TryGetResource(key, theme, out var appRes))
+                    {
+                        res = appRes;
+                    }
+                }
+
+                if (res != null)
+                {
+                    if (res is Color c) return c;
+                    if (res is ISolidColorBrush brush) return brush.Color;
+                    if (res is string s && Color.TryParse(s, out var parsed)) return parsed;
+                }
+
+                return fallback;
+            }
+
+            Color c1 = GetColor("TracePaletteColor1", Colors.Red);
+            Color c2 = GetColor("TracePaletteColor2", Colors.DodgerBlue);
+            Color c3 = GetColor("TracePaletteColor3", Colors.LimeGreen);
+            Color c4 = GetColor("TracePaletteColor4", Colors.Yellow);
+
+            return new List<Color> { c1, c2, c3, c4 };
         }
 
         public void AddOrReplacePaletteColor(Color newColor)
@@ -588,11 +629,10 @@ namespace Classic_Repair_Toolbox.TabSchematics
             this._draggingNodeIndex = -1;
             this._tempDrawingLine = null;
 
-            this.CurrentDrawingColor = Colors.Red;
-            this.PaletteColors = new List<Color> { Colors.Red, Colors.DodgerBlue, Colors.LimeGreen, Colors.Yellow };
+            this.PaletteColors = this.GetDefaultPaletteColors();
+            this.CurrentDrawingColor = this.PaletteColors.FirstOrDefault();
             this.PaletteColorsChanged?.Invoke(this.PaletteColors);
-            this.PaletteStateChanged?.Invoke(false, default);
-        }
+    }
 
         private void DeselectAll()
         {
@@ -902,5 +942,6 @@ namespace Classic_Repair_Toolbox.TabSchematics
                 Canvas.SetTop(m, p.Y - (m.Height / 2.0));
             }
         }
+
     }
 }

@@ -915,8 +915,8 @@ namespace CRT
         {
             string colorPrefix = this._localRegion.ToUpperInvariant() switch
             {
-                "PAL" => "Region_PAL",
-                "NTSC" => "Region_NTSC",
+                "PAL" => "Schematics_Region_PAL",
+                "NTSC" => "Schematics_Region_NTSC",
                 _ => "SchematicsRegion"
             };
 

@@ -20,8 +20,6 @@
                     <SolidColorBrush x:Key="AppThemeBannerBackgroundBrush">#4C1515</SolidColorBrush>
                     <!-- Used in Main.axaml: banner text + banner buttons foreground -->
                     <SolidColorBrush x:Key="AppThemeBannerTextBrush">White</SolidColorBrush>
-                    <!-- Used in Main.axaml: BannerDismissButton pointerover background -->
-                    <SolidColorBrush x:Key="AppThemeBannerDismissHoverBrush">#6B2020</SolidColorBrush>
                     <!-- Used in Main.axaml: BannerDismissButton pressed background -->
                     <SolidColorBrush x:Key="AppThemeBannerDismissPressedBrush">#4C1515</SolidColorBrush>
 
@@ -50,22 +48,51 @@
                     <!-- Reserved for status UI text -->
                     <SolidColorBrush x:Key="AppThemeStatusTextBrush">DarkBlue</SolidColorBrush>
 
+					<!-- Component Info Overlays (Pins, Oscilloscope, Counters) -->
+					<SolidColorBrush x:Key="ComponentPopup_OverlayKhaki_Bg">Khaki</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayKhaki_Border">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayKhaki_Fg">Black</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_OverlayDarkKhaki_Border">DarkKhaki</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_OverlayOsc_Bg">#B0D8EC</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayOsc_Border">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayOsc_Fg">Black</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_ImageCounter_Bg">#BB000000</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_ImageCounter_Border">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_ImageCounter_Fg">White</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_Flash_Border">Black</SolidColorBrush>
+
+					<!-- Feedback Tab specific -->
+					<SolidColorBrush x:Key="Feedback_TrashIcon_Fg">IndianRed</SolidColorBrush>
+					<SolidColorBrush x:Key="Feedback_Submit_Fg">White</SolidColorBrush>
+					
+					<!-- Light, Main, banner, button hover -->
+					<SolidColorBrush x:Key="MainBannerHover_Bg">#4F3528</SolidColorBrush>
+					<SolidColorBrush x:Key="MainBannerHover_Fg">#DDE0DA</SolidColorBrush>
+					
 					<!-- Light, Splash, border -->
 					<SolidColorBrush x:Key="AppThemeSplashBorderBrush">Black</SolidColorBrush>
 
-					<!-- Light, region colors -->
-					<SolidColorBrush x:Key="Region_PAL_Bg">IndianRed</SolidColorBrush>
-					<SolidColorBrush x:Key="Region_PAL_Fg">White</SolidColorBrush>
-					<SolidColorBrush x:Key="Region_NTSC_Bg">#CBD6E5</SolidColorBrush>
-					<SolidColorBrush x:Key="Region_NTSC_Fg">Black</SolidColorBrush>
-					
 					<!-- Light, Schematics, labels in large schematic image -->
-					<SolidColorBrush x:Key="SchematicsName_Bg">Khaki</SolidColorBrush>
-					<SolidColorBrush x:Key="SchematicsName_Fg">Black</SolidColorBrush>
-					<SolidColorBrush x:Key="SchematicsRegion_Bg">Red</SolidColorBrush> <!-- should never be seen -->
-					<SolidColorBrush x:Key="SchematicsRegion_Fg">Yellow</SolidColorBrush> <!-- should never be seen -->
-					<SolidColorBrush x:Key="SchematicsComponent_Bg">Khaki</SolidColorBrush>
-					<SolidColorBrush x:Key="SchematicsComponent_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Name_Bg">Khaki</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Name_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_PAL_Bg">IndianRed</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_PAL_Fg">White</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_NTSC_Bg">#CBD6E5</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_NTSC_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="SchematicsSelectedComponent_Bg">Khaki</SolidColorBrush>
+					<SolidColorBrush x:Key="SchematicsSelectedComponent_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="SchematicsPanels_Bg">#F2F2F2</SolidColorBrush> <!-- light grey -->
+					<SolidColorBrush x:Key="SchematicsPanels_Fg">Black</SolidColorBrush>
+
+					<!-- Light, Schematics, traces standard colors -->
+					<Color x:Key="TracePaletteColor1">#F40000</Color> <!-- red -->
+					<Color x:Key="TracePaletteColor2">#1564F4</Color> <!-- blue -->
+					<Color x:Key="TracePaletteColor3">#0BC419</Color> <!-- green -->
+					<Color x:Key="TracePaletteColor4">#E6E600</Color> <!-- yellow -->
 
 					<!-- Light, Thumbnail, border -->
                     <SolidColorBrush x:Key="Thumbnail_Border">Black</SolidColorBrush>
@@ -84,8 +111,13 @@
 					<!-- Light, Component popup, bullet list -->
 					<SolidColorBrush x:Key="ComponentPopup_BulletList_Fg">Black</SolidColorBrush>
 					<SolidColorBrush x:Key="ComponentPopup_ImageTransparent_Bg">White</SolidColorBrush>
-					
 
+					<!-- Light, Feedback -->
+					<SolidColorBrush x:Key="Feedback_InputFields_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="Feedback_SubmittedOk_Fg">#547131</SolidColorBrush>
+					<SolidColorBrush x:Key="Feedback_SubmittedFail_Fg">IndianRed</SolidColorBrush>
+					
+					
 					<!-- Light, Generic colors -->
 					
 					<!-- -->
@@ -108,8 +140,6 @@
                     <SolidColorBrush x:Key="AppThemeBannerBackgroundBrush">#38241A</SolidColorBrush>
                     <!-- Used in Main.axaml: banner text + banner buttons foreground -->
                     <SolidColorBrush x:Key="AppThemeBannerTextBrush">#E8E0DA</SolidColorBrush>
-                    <!-- Used in Main.axaml: BannerDismissButton pointerover background -->
-                    <SolidColorBrush x:Key="AppThemeBannerDismissHoverBrush">#4F3528</SolidColorBrush>
                     <!-- Used in Main.axaml: BannerDismissButton pressed background -->
                     <SolidColorBrush x:Key="AppThemeBannerDismissPressedBrush">#2B1B13</SolidColorBrush>
 
@@ -138,22 +168,52 @@
                     <!-- Reserved for status UI text -->
                     <SolidColorBrush x:Key="AppThemeStatusTextBrush">#E8E0DA</SolidColorBrush>
 
+					<!-- Component Info Overlays (Pins, Oscilloscope, Counters) -->
+					<SolidColorBrush x:Key="ComponentPopup_OverlayKhaki_Bg">Khaki</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayKhaki_Border">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayKhaki_Fg">Black</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_OverlayDarkKhaki_Border">DarkKhaki</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_OverlayOsc_Bg">#B0D8EC</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayOsc_Border">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_OverlayOsc_Fg">Black</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_ImageCounter_Bg">#BB000000</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_ImageCounter_Border">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="ComponentPopup_ImageCounter_Fg">White</SolidColorBrush>
+
+					<SolidColorBrush x:Key="ComponentPopup_Flash_Border">Black</SolidColorBrush>
+
+					<!-- Feedback Tab specific -->
+					<SolidColorBrush x:Key="Feedback_TrashIcon_Fg">IndianRed</SolidColorBrush>
+					<SolidColorBrush x:Key="Feedback_Submit_Fg">White</SolidColorBrush>
+					
+					<!-- Dark, Main, banner, button hover -->
+					<SolidColorBrush x:Key="MainBannerHover_Bg">#4F3528</SolidColorBrush>
+					<SolidColorBrush x:Key="MainBannerHover_Fg">#DDE0DA</SolidColorBrush>
+					
 					<!-- Dark, Splash, border -->
 					<SolidColorBrush x:Key="AppThemeSplashBorderBrush">LightGray</SolidColorBrush>
 
-					<!-- Dark, region specific colors -->
-					<SolidColorBrush x:Key="Region_PAL_Bg">IndianRed</SolidColorBrush>
-					<SolidColorBrush x:Key="Region_PAL_Fg">White</SolidColorBrush>
-					<SolidColorBrush x:Key="Region_NTSC_Bg">#CBD6E5</SolidColorBrush>
-					<SolidColorBrush x:Key="Region_NTSC_Fg">Black</SolidColorBrush>
 
 					<!-- Dark, Schematics, labels in large schematic image -->
-					<SolidColorBrush x:Key="SchematicsName_Bg">Khaki</SolidColorBrush>
-					<SolidColorBrush x:Key="SchematicsName_Fg">Black</SolidColorBrush>
-					<SolidColorBrush x:Key="SchematicsRegion_Bg">Red</SolidColorBrush> <!-- should never be seen -->
-					<SolidColorBrush x:Key="SchematicsRegion_Fg">Yellow</SolidColorBrush> <!-- should never be seen -->
-					<SolidColorBrush x:Key="SchematicsComponent_Bg">Khaki</SolidColorBrush>
-					<SolidColorBrush x:Key="SchematicsComponent_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Name_Bg">Khaki</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Name_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_PAL_Bg">IndianRed</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_PAL_Fg">White</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_NTSC_Bg">#CBD6E5</SolidColorBrush>
+					<SolidColorBrush x:Key="Schematics_Region_NTSC_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="SchematicsSelectedComponent_Bg">Khaki</SolidColorBrush>
+					<SolidColorBrush x:Key="SchematicsSelectedComponent_Fg">Black</SolidColorBrush>
+					<SolidColorBrush x:Key="SchematicsPanels_Bg">#46403E</SolidColorBrush> <!-- light brown'ish -->
+					<SolidColorBrush x:Key="SchematicsPanels_Fg">#E8E0DA</SolidColorBrush>
+
+					<!-- Dark, schematics, traces standard colors -->
+					<Color x:Key="TracePaletteColor1">#F40000</Color> <!-- red -->
+					<Color x:Key="TracePaletteColor2">#1564F4</Color> <!-- blue -->
+					<Color x:Key="TracePaletteColor3">#0BC419</Color> <!-- green -->
+					<Color x:Key="TracePaletteColor4">#E6E600</Color> <!-- yellow -->
 					
                     <!-- Dark, Thumbnail, border -->
                     <SolidColorBrush x:Key="Thumbnail_Border">LightGray</SolidColorBrush>
@@ -171,6 +231,11 @@
 
 					<!-- Dark, Component popup, image transparent background -->
 					<SolidColorBrush x:Key="ComponentPopup_ImageTransparent_Bg">#A99F99</SolidColorBrush>
+
+					<!-- Dark, Feedback, sent -->
+					<SolidColorBrush x:Key="Feedback_InputFields_Fg">#D5E0DA</SolidColorBrush>
+					<SolidColorBrush x:Key="Feedback_SubmittedOk_Fg">#4ADE80</SolidColorBrush>
+					<SolidColorBrush x:Key="Feedback_SubmittedFail_Fg">#EF4444</SolidColorBrush>
 
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
