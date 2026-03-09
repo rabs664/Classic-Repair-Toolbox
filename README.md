@@ -110,7 +110,7 @@ You can help specifically with these topics:
 
 There are several ways to get in contact with the developer:
 
-- Direct communication via _Retro Hardware Discord_ channel, [https://discord.gg/HDWct2vxem](https://discord.gg/HDWct2vxem) (accept the invite on page)
+- Direct communication via [Retro Hardware Discord](https://discord.gg/HDWct2vxem) channel (accept the invite on page)
 - CRT "Feedback" tab
 - GitHub [Issues](https://github.com/HovKlan-DH/Classic-Repair-Toolbox/issues)
 
