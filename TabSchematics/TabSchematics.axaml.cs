@@ -1694,8 +1694,7 @@ public partial class TabSchematics : UserControl
 
     // ###########################################################################################
     // Updates the placeholder position while dragging over the thumbnail list.
-    // Swaps immediately when the visual bounds of the dragged ghost intersect neighboring items,
-    // but only in the current drag direction to prevent placeholder bouncing.
+    // Uses actual ListBoxItem row bounds and only moves in the current drag direction.
     // ###########################################################################################
     private void OnThumbnailDragOver(object? sender, DragEventArgs e)
     {
@@ -1738,13 +1737,12 @@ public partial class TabSchematics : UserControl
         bool isMovingUp = deltaY < 0;
         bool isMovingDown = deltaY > 0;
 
-        // Calculate absolute visual Top/Bottom edges of the dragged ghost, in List space
         double ghostTopY = pointerInList.Y - this.thisThumbnailDragPointerOffsetInItem.Y;
         double ghostBottomY = ghostTopY + this.thisDraggedThumbnailHeight;
 
         if (isMovingUp && placeholderIndex > 0)
         {
-            var itemAbove = this.SchematicsThumbnailList.ContainerFromIndex(placeholderIndex - 1) as Control;
+            var itemAbove = this.SchematicsThumbnailList.ContainerFromIndex(placeholderIndex - 1) as ListBoxItem;
             if (itemAbove != null)
             {
                 var transform = itemAbove.TransformToVisual(this.SchematicsThumbnailList);
@@ -1752,7 +1750,6 @@ public partial class TabSchematics : UserControl
                 {
                     var boundsAbove = new Rect(itemAbove.Bounds.Size).TransformToAABB(transform.Value);
 
-                    // Move up as soon as the top edge of the dragged thumbnail touches the bottom edge
                     if (ghostTopY <= boundsAbove.Bottom)
                     {
                         this.ShowThumbnailDropPlaceholder(placeholderIndex - 1);
@@ -1766,7 +1763,7 @@ public partial class TabSchematics : UserControl
 
         if (isMovingDown && placeholderIndex < this.currentThumbnails.Count - 1)
         {
-            var itemBelow = this.SchematicsThumbnailList.ContainerFromIndex(placeholderIndex + 1) as Control;
+            var itemBelow = this.SchematicsThumbnailList.ContainerFromIndex(placeholderIndex + 1) as ListBoxItem;
             if (itemBelow != null)
             {
                 var transform = itemBelow.TransformToVisual(this.SchematicsThumbnailList);
@@ -1774,7 +1771,6 @@ public partial class TabSchematics : UserControl
                 {
                     var boundsBelow = new Rect(itemBelow.Bounds.Size).TransformToAABB(transform.Value);
 
-                    // Move down as soon as the bottom edge of the dragged thumbnail touches the top edge
                     if (ghostBottomY >= boundsBelow.Top)
                     {
                         this.ShowThumbnailDropPlaceholder(placeholderIndex + 1);
