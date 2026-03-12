@@ -141,7 +141,7 @@
 					<TextBlock Grid.Row="0"
 							   Text="Hardware"
 							   FontSize="11"
-							   Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+							   Foreground="{DynamicResource Main_Header_Fg}" />
 					<ComboBox Grid.Row="1"
 							  x:Name="HardwareComboBox"
 							  HorizontalAlignment="Stretch"
@@ -149,7 +149,7 @@
 					<TextBlock Grid.Row="2"
 							   Text="Board"
 							   FontSize="11"
-							   Foreground="{DynamicResource AppThemeSecondaryTextBrush}"
+							   Foreground="{DynamicResource Main_Header_Fg}"
 							   Margin="0,8,0,0" />
 					<ComboBox Grid.Row="3"
 							  x:Name="BoardComboBox"
@@ -158,13 +158,13 @@
 					<TextBlock Grid.Row="4"
 							   Text="Category"
 							   FontSize="11"
-							   Foreground="{DynamicResource AppThemeSecondaryTextBrush}"
+							   Foreground="{DynamicResource Main_Header_Fg}"
 							   Margin="0,8,0,0" />
 					<ListBox Grid.Row="5"
 							 x:Name="CategoryFilterListBox"
 							 SelectionMode="Multiple,Toggle"
 							 Margin="0,4,0,0"
-							 Background="{DynamicResource AppThemeListBackgroundBrush}"
+							 Background="{DynamicResource List_Bg}"
 							 BorderBrush="{DynamicResource AppThemeBorderBrush}"
 							 BorderThickness="1"
 							 CornerRadius="4"
@@ -186,19 +186,19 @@
 								<Setter Property="FontSize" Value="11" />
 							</Style>
 							<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-								<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionHoverBrush}" />
+								<Setter Property="Background" Value="{DynamicResource List_Selected_Hover_Bg}" />
 							</Style>
 							<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-								<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionBrush}" />
+								<Setter Property="Background" Value="{DynamicResource List_Selected_Bg}" />
 							</Style>
 							<Style Selector="ListBoxItem:selected">
-								<Setter Property="Foreground" Value="{DynamicResource AppThemeListSelectedTextBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource List_Selected_Fg}" />
 							</Style>
 							<Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter">
-								<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionHoverBrush}" />
+								<Setter Property="Background" Value="{DynamicResource List_Selected_Hover_Bg}" />
 							</Style>
 							<Style Selector="ListBoxItem:selected:pointerover">
-								<Setter Property="Foreground" Value="{DynamicResource AppThemeListSelectedTextBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource List_Selected_Fg}" />
 							</Style>
 						</ListBox.Styles>
 					</ListBox>
@@ -206,13 +206,13 @@
 					<TextBlock Grid.Row="6"
 							   Text="Component"
 							   FontSize="11"
-							   Foreground="{DynamicResource AppThemeSecondaryTextBrush}"
+							   Foreground="{DynamicResource Main_Header_Fg}"
 							   Margin="0,8,0,0" />
 					<ListBox Grid.Row="7"
 							 x:Name="ComponentFilterListBox"
 							 SelectionMode="Multiple,Toggle"
 							 Margin="0,4,0,0"
-							 Background="{DynamicResource AppThemeListBackgroundBrush}"
+							 Background="{DynamicResource List_Bg}"
 							 BorderBrush="{DynamicResource AppThemeBorderBrush}"
 							 BorderThickness="1"
 							 CornerRadius="4"
@@ -228,25 +228,33 @@
 								<Setter Property="CornerRadius" Value="3" />
 								<Setter Property="ClipToBounds" Value="True" />
 							</Style>
+
+							<!-- Default (non-selected) state -->
 							<Style Selector="ListBoxItem">
 								<Setter Property="Padding" Value="8,3" />
 								<Setter Property="MinHeight" Value="0" />
 								<Setter Property="FontSize" Value="11" />
+								<Setter Property="Foreground" Value="{DynamicResource List_Fg}" />
 							</Style>
+
 							<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-								<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionHoverBrush}" />
+								<Setter Property="Background" Value="{DynamicResource List_Selected_Hover_Bg}" />
 							</Style>
+
+							<!-- Selected state -->
 							<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-								<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionBrush}" />
+								<Setter Property="Background" Value="{DynamicResource List_Selected_Bg}" />
 							</Style>
 							<Style Selector="ListBoxItem:selected">
-								<Setter Property="Foreground" Value="{DynamicResource AppThemeListSelectedTextBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource List_Selected_Fg}" />
 							</Style>
+
+							<!-- Selected hover state -->
 							<Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter">
-								<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionHoverBrush}" />
+								<Setter Property="Background" Value="{DynamicResource List_Selected_Hover_Bg}" />
 							</Style>
 							<Style Selector="ListBoxItem:selected:pointerover">
-								<Setter Property="Foreground" Value="{DynamicResource AppThemeListSelectedTextBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource List_Selected_Fg}" />
 							</Style>
 						</ListBox.Styles>
 					</ListBox>
@@ -255,11 +263,35 @@
 				<!-- Action Controls -->
 				<StackPanel Grid.Row="2" Margin="0,12,0,0" Spacing="4">
 					<TextBox x:Name="ComponentSearchTextBox"
-						 FontSize="12"
-						 MinHeight="0"
-						 Padding="4"
-						 VerticalContentAlignment="Center"
-						 TextChanged="OnComponentSearchTextChanged" />
+				 FontSize="12"
+				 MinHeight="0"
+				 Padding="4"
+				 Background="{DynamicResource Main_InputField_Bg}"
+				 Foreground="{DynamicResource Main_InputField_Fg}"
+				VerticalContentAlignment="Center"
+				TextChanged="OnComponentSearchTextChanged">
+
+						<TextBox.Styles>
+							<!-- Prevent Background and Border changes on Hover -->
+							<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+								<Setter Property="Background" Value="{DynamicResource Main_InputField_Bg}" />
+							</Style>
+
+							<!-- Prevent Background changes on Click/Focus -->
+							<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+								<Setter Property="Background" Value="{DynamicResource Main_InputField_Bg}" />
+							</Style>
+
+							<!-- Prevent Foreground changes on Hover and Focus -->
+							<Style Selector="TextBox:pointerover">
+								<Setter Property="Foreground" Value="{DynamicResource Main_InputField_Fg}" />
+							</Style>
+
+							<Style Selector="TextBox:focus">
+								<Setter Property="Foreground" Value="{DynamicResource Main_InputField_Fg}" />
+							</Style>
+						</TextBox.Styles>
+					</TextBox>
 
 					<!-- Selection Actions -->
 					<Grid ColumnDefinitions="*,4,*">
@@ -333,7 +365,7 @@
 		<!-- Right Panel -->
 		<Border x:Name="RightPanel"
 				Grid.Column="2"
-				BorderBrush="{DynamicResource AppThemeBackgroundBrush}"
+				BorderBrush="{DynamicResource Main_Bg}"
 				BorderThickness="1"
 				Padding="0,0,0,0">
 			<Grid>

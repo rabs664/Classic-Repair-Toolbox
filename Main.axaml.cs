@@ -75,8 +75,7 @@ namespace CRT
             this._restorePosition = new PixelPoint(UserSettings.WindowX, UserSettings.WindowY);
 
             // Wireup "blink" button
-            this.BlinkSelectedCheckBox.IsChecked = false;
-            this.BlinkSelectedCheckBox.IsCheckedChanged += this.OnBlinkSelectedChanged;
+            this.BlinkSelectedCheckBox.IsChecked = UserSettings.BlinkSelected;
 
             if (UserSettings.HasWindowPlacement)
             {
@@ -374,7 +373,8 @@ namespace CRT
             this.TabSchematicsControl.schematicByName = new(StringComparer.OrdinalIgnoreCase);
             this.TabSchematicsControl.highlightRectsBySchematicAndLabel = new(StringComparer.OrdinalIgnoreCase);
             this._currentBoardData = null;
-            this.PopulateCreditsSection(null);
+
+            this.PopulateBoardInfoSection(null, null);
 
             this.TabSchematicsControl.ResetSchematicsViewer();
 
@@ -399,7 +399,8 @@ namespace CRT
                 return;
 
             this._currentBoardData = boardData;
-            this.PopulateCreditsSection(boardData.Credits);
+
+            this.PopulateBoardInfoSection(boardData.RevisionDate, boardData.Credits);
 
             // Populate category filter in insertion order
             var categories = BuildDistinctCategories(boardData);
@@ -813,7 +814,7 @@ namespace CRT
         }
 
         // ###########################################################################################
-        // Forces the entire application (and all its sub-windows) to shut down once the main window 
+        // Forces the entire application (and all its sub-windows) to shut down once the main window
         // has successfully completed its closing sequence.
         // ###########################################################################################
         private void OnWindowClosed(object? sender, EventArgs e)
@@ -1006,26 +1007,32 @@ namespace CRT
         }
 
         // ###########################################################################################
-        // Switches the local region to PAL and reloads images without touching the global setting.
+        // Switches the local region to PAL and reloads images.
         // ###########################################################################################
         private void OnPalRegionClick(object? sender, RoutedEventArgs e)
         {
             if (this._suppressRegionToggle)
                 return;
+
             this._localRegion = "PAL";
+            UserSettings.Region = "PAL";
+
             this.UpdateRegionButtonsState();
             this.RefreshImages();
             this.TabSchematicsControl.UpdateOverlayLabels();
         }
 
         // ###########################################################################################
-        // Switches the local region to NTSC and reloads images without touching the global setting.
+        // Switches the local region to NTSC and reloads images.
         // ###########################################################################################
         private void OnNtscRegionClick(object? sender, RoutedEventArgs e)
         {
             if (this._suppressRegionToggle)
                 return;
+
             this._localRegion = "NTSC";
+            UserSettings.Region = "NTSC";
+
             this.UpdateRegionButtonsState();
             this.RefreshImages();
             this.TabSchematicsControl.UpdateOverlayLabels();
@@ -1130,10 +1137,12 @@ namespace CRT
                 {
                     this.PositionPopupOnSameScreen(popup);
                     popup.Show(this);
+                    popup.Focus();
                 }
                 else
                 {
                     popup.Activate();
+                    popup.Focus();
                 }
 
                 return;
@@ -1152,10 +1161,12 @@ namespace CRT
             {
                 this.PositionPopupOnSameScreen(this._singleComponentInfoWindow);
                 this._singleComponentInfoWindow.Show(this);
+                this._singleComponentInfoWindow.Focus();
             }
             else
             {
                 this._singleComponentInfoWindow.Activate();
+                this._singleComponentInfoWindow.Focus();
             }
         }
 
@@ -1164,6 +1175,8 @@ namespace CRT
         // ###########################################################################################
         private void OnBlinkSelectedChanged(object? sender, RoutedEventArgs e)
         {
+            UserSettings.BlinkSelected = BlinkSelectedCheckBox.IsChecked ?? false;
+
             this._blinkSelectedEnabled = this.BlinkSelectedCheckBox.IsChecked == true;
 
             bool hasSelection = this.TabSchematicsControl.highlightIndexBySchematic.Count > 0;
@@ -1274,11 +1287,11 @@ namespace CRT
         }
 
         // ###########################################################################################
-        // Builds and displays a grouped credits list from the loaded board data.
+        // Updates the UI with info specific to the current board's revision date and credits.
         // ###########################################################################################
-        private void PopulateCreditsSection(List<CreditEntry>? credits)
+        private void PopulateBoardInfoSection(string? revisionDate, List<CreditEntry>? credits)
         {
-            this.TabAbout.SetCredits(credits);
+            this.TabAbout.SetBoardInfo(revisionDate, credits);
         }
 
         // ###########################################################################################

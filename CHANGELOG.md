@@ -1,3 +1,14 @@
+- Fixed it did not save main region selection
+- Fixed `ESCAPE` did not close active component info popup, if set to "Open multiple windows for popup" #84
+- Changed "Blink selected" checkbox is saved to settings
+- Changed display name in Windows from `Classic-Repair-Toolbox` to `Classic Repair Toolbox`
+- Changed a few colors
+- Changed format for some logged events
+- changed application icon
+- Changed "About" tab
+- Refactored various code and texts
+
+OLD RELEASE - REMOVE:
 - Fixed traces are displayed correctly after a window resize #69
 - Fixed transparent images did not show correct background color in component info popup #79
 - Fixed `ESCAPE` and mouseclick outside of single-opened component info popup does not close window #68

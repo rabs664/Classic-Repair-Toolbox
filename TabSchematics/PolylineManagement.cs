@@ -114,10 +114,10 @@ namespace Classic_Repair_Toolbox.TabSchematics
                 return fallback;
             }
 
-            Color c1 = GetColor("TracePaletteColor1", Colors.Red);
-            Color c2 = GetColor("TracePaletteColor2", Colors.DodgerBlue);
-            Color c3 = GetColor("TracePaletteColor3", Colors.LimeGreen);
-            Color c4 = GetColor("TracePaletteColor4", Colors.Yellow);
+            Color c1 = GetColor("Schematics_TracePalette_Color1", Colors.Red);
+            Color c2 = GetColor("Schematics_TracePalette_Color2", Colors.DodgerBlue);
+            Color c3 = GetColor("Schematics_TracePalette_Color3", Colors.LimeGreen);
+            Color c4 = GetColor("Schematics_TracePalette_Color4", Colors.Yellow);
 
             return new List<Color> { c1, c2, c3, c4 };
         }
@@ -567,13 +567,13 @@ namespace Classic_Repair_Toolbox.TabSchematics
                 poly.AddToCanvas(this._canvas);
                 poly.SetGlobalVisibility(this.GetColorVisibility(c));
                 this._polylines.Add(poly);
-                this.AddOrReplacePaletteColor(c); // Force this active pin back into the standard dynamic HUD palette 
+                this.AddOrReplacePaletteColor(c); // Force this active pin back into the standard dynamic HUD palette
             }
         }
 
         // ###########################################################################################
         // Ingests portable JSON friendly models and reconstructs active native elements automatically.
-        // Also retroactively validates and updates non-compliant legacy native canvas coordinates natively saved mappings. 
+        // Also retroactively validates and updates non-compliant legacy native canvas coordinates natively saved mappings.
         // ###########################################################################################
         public void ImportTraces(List<TraceModel> traces)
         {

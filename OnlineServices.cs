@@ -73,7 +73,7 @@ namespace CRT
             }
             catch (Exception ex)
             {
-                Logger.Warning($"Online version check failed - [{ex.Message}]");
+                Logger.Warning($"Online check-in failed: [{ex.Message}]");
             }
         }
 

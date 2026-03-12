@@ -4,34 +4,85 @@
 	<Grid RowDefinitions="Auto,*,Auto,Auto,Auto" Margin="16">
 
 		<!-- Contact Info -->
-		<StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,16">
-			<TextBlock Text="Email Address (optional, for developer replies):" FontSize="12" />
-			<TextBox x:Name="EmailTextBox" Watermark="your.email@example.com" FontSize="12" />
-		</StackPanel>
+        <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,16">
+            <TextBlock
+                Text="Email address (optional, but required if you want any reply):" FontSize="12" />
+            <TextBox
+                x:Name="EmailTextBox"
+                Watermark="your.email@example.com"
+                FontSize="12"
+                Background="{DynamicResource Main_InputField_Bg}"
+                Foreground="{DynamicResource Main_InputField_Fg}">
 
-		<!-- Feedback Area -->
-		<Grid Grid.Row="1" RowDefinitions="Auto,*" Margin="0,0,0,16">
-			<TextBlock Grid.Row="0" Text="Your Feedback:" FontSize="12" Margin="0,0,0,4" />
-			<TextBox Grid.Row="1" x:Name="FeedbackTextBox"
-					 Foreground="{DynamicResource Feedback_InputFields_Fg}"
-			         AcceptsReturn="True" TextWrapping="Wrap"
-			         Watermark="Describe your issue, suggestion, or question..." />
-		</Grid>
+                <TextBox.Styles>
+                    <!-- Prevent Background and Border changes on Hover -->
+                    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="{DynamicResource Main_InputField_Bg}" />
+                    </Style>
+
+                    <!-- Prevent Background changes on Click/Focus -->
+                    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="{DynamicResource Main_InputField_Bg}" />
+                    </Style>
+
+                    <!-- Prevent Foreground changes on Hover and Focus -->
+                    <Style Selector="TextBox:pointerover">
+                        <Setter Property="Foreground" Value="{DynamicResource Main_InputField_Fg}" />
+                    </Style>
+
+                    <Style Selector="TextBox:focus">
+                        <Setter Property="Foreground" Value="{DynamicResource Main_InputField_Fg}" />
+                    </Style>
+                </TextBox.Styles>
+            </TextBox>
+        </StackPanel>
+
+        <!-- Feedback Area -->
+        <Grid Grid.Row="1" RowDefinitions="Auto,*" Margin="0,0,0,16">
+            <TextBlock Grid.Row="0" Text="Your feedback:" FontSize="12" Margin="0,0,0,4" />
+            <TextBox Grid.Row="1" x:Name="FeedbackTextBox"
+                     Background="{DynamicResource Main_TextField_Bg}"
+                     Foreground="{DynamicResource Main_TextField_Fg}"
+                     AcceptsReturn="True" TextWrapping="Wrap"
+                     Watermark="Describe your issue, suggestion or question...">
+                <TextBox.Styles>
+
+                    <!-- Prevent Background and Border changes on Hover -->
+                    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="{DynamicResource Main_TextField_Bg}" />
+                    </Style>
+
+                    <!-- Prevent Background changes on Click/Focus -->
+                    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                        <Setter Property="Background" Value="{DynamicResource Main_TextField_Bg}" />
+                    </Style>
+
+                    <!-- Prevent Foreground changes on Hover and Focus -->
+                    <Style Selector="TextBox:pointerover">
+                        <Setter Property="Foreground" Value="{DynamicResource Main_TextField_Fg}" />
+                    </Style>
+
+                    <Style Selector="TextBox:focus">
+                        <Setter Property="Foreground" Value="{DynamicResource Main_TextField_Fg}" />
+                    </Style>
+                </TextBox.Styles>
+            </TextBox>
+        </Grid>
 
 		<!-- Attachments Configuration -->
 		<StackPanel Grid.Row="2" Spacing="8" Margin="0,0,0,16">
-			<TextBlock Text="Quick Attachments:" FontWeight="Bold" FontSize="12" />
+			<TextBlock Text="Attachments:" FontWeight="Bold" FontSize="12" />
 			<CheckBox x:Name="AttachLogfileCheckBox" Content="Attach application logfile" FontSize="12" />
 			<CheckBox x:Name="AttachConfigsCheckBox" Content="Attach configuration and traces data files" FontSize="12" />
 
-			<TextBlock Text="Custom Attachments:" FontWeight="Bold" FontSize="12" Margin="0,8,0,0" />
+			<TextBlock Text="More attachments:" FontWeight="Bold" FontSize="12" Margin="0,8,0,0" />
 			<StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,4">
-				<Button x:Name="AttachFilesButton" Content="Attach File(s)..." Click="OnAttachFilesClick" />
-				<Button x:Name="AttachFolderButton" Content="Attach Folder..." Click="OnAttachFolderClick" />
-				<Button x:Name="ClearAttachmentsButton" Content="Clear Custom Attachments" Click="OnClearAttachmentsClick" IsEnabled="False" />
+				<Button x:Name="AttachFilesButton" Content="Attach file(s)" Click="OnAttachFilesClick" />
+				<Button x:Name="AttachFolderButton" Content="Attach folder" Click="OnAttachFolderClick" />
+				<Button x:Name="ClearAttachmentsButton" Content="Clear attachments" Click="OnClearAttachmentsClick" IsEnabled="False" />
 			</StackPanel>
 			<ListBox x:Name="AttachmentsListBox" Height="160"
-			         Background="{DynamicResource AppThemeListBackgroundBrush}"
+			         Background="{DynamicResource List_Bg}"
 			         BorderBrush="{DynamicResource AppThemeBorderBrush}" BorderThickness="1" CornerRadius="4">
 				<ListBox.Styles>
 					<Style Selector="ListBoxItem">
@@ -68,7 +119,7 @@
 		</TextBlock>
 
 		<Button Grid.Row="4" x:Name="SubmitButton"
-			Content="Send feedback to developer"
+			Content="Send feedback"
 			HorizontalAlignment="Right"
 			Padding="16,8"
 			Background="{DynamicResource AppThemeAccentBrush}"

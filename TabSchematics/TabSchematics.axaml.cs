@@ -329,7 +329,7 @@ public partial class TabSchematics : UserControl
             };
 
             // Set DynamicResource for Foreground
-            txt.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("SchematicsPanels_Fg"));
+            txt.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("Schematics_Panels_Fg"));
 
             // Clicking anywhere on the row flips the active status of the checkbox
             row.PointerPressed += (s, e) =>

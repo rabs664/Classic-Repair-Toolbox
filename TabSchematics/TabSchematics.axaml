@@ -29,7 +29,7 @@
                            VerticalAlignment="Center"
                            FontSize="14"
                            FontWeight="SemiBold"
-                           Foreground="{DynamicResource AppThemeSecondaryTextBrush}"
+                           Foreground="{DynamicResource Main_Fg}"
                            IsVisible="False" />
 
 				<Image x:Name="SchematicsImage"
@@ -123,7 +123,7 @@
 														HorizontalAlignment="Left"
 														VerticalAlignment="Bottom"
 														Margin="10,0,0,10"
-														Background="{DynamicResource SchematicsPanels_Bg}"
+														Background="{DynamicResource Schematics_Panels_Bg}"
 														BorderBrush="{DynamicResource AppThemeBorderBrush}"
 														BorderThickness="1"
 														CornerRadius="4"
@@ -134,7 +134,7 @@
 									   FontSize="11"
 									   VerticalAlignment="Center"
 									   FontWeight="Bold"
-									   Foreground="{DynamicResource SchematicsPanels_Fg}" />
+									   Foreground="{DynamicResource Schematics_Panels_Fg}" />
 							<Button x:Name="ToggleLabelsPanelButton"
 									Content="Collapse"
 									FontSize="9"
@@ -179,7 +179,7 @@
 								HorizontalAlignment="Right"
 								VerticalAlignment="Bottom"
 								Margin="0,0,10,10"
-								Background="{DynamicResource SchematicsPanels_Bg}"
+								Background="{DynamicResource Schematics_Panels_Bg}"
 								BorderBrush="{DynamicResource AppThemeBorderBrush}"
 								BorderThickness="1"
 								CornerRadius="4"
@@ -215,7 +215,7 @@
 					IsVisible="False"
 					HorizontalAlignment="Left"
 					VerticalAlignment="Top"
-					Background="{DynamicResource SchematicsPanels_Bg}"
+					Background="{DynamicResource Schematics_Panels_Bg}"
 					BorderBrush="{DynamicResource AppThemeBorderBrush}"
 					BorderThickness="1"
 					CornerRadius="8"
@@ -227,7 +227,7 @@
 						<StackPanel x:Name="DynamicPaletteColorsPanel" Orientation="Horizontal" Spacing="10" />
 
 						<!-- THIS IS THE FIRST DIVIDER -->
-						<Border Width="1" Height="18" Background="{DynamicResource SchematicsPanels_Fg}" Margin="2,0"/>
+						<Border Width="1" Height="18" Background="{DynamicResource Schematics_Panels_Fg}" Margin="2,0"/>
 
 						<!-- Custom Color Wheel mapped as a perfectly round flyout button -->
 						<Button x:Name="CustomColorButton"
@@ -362,7 +362,7 @@
 								<TextBlock Text="Missing Image"
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center"
-										   Foreground="{DynamicResource AppThemeSecondaryTextBrush}"
+										   Foreground="{DynamicResource Main_Fg}"
 										   FontSize="11"
 										   Padding="8,16"
 										   TextAlignment="Center"

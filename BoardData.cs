@@ -99,6 +99,7 @@ namespace CRT
         public bool IsLoaded { get; init; }
         */
         // Below is supporting .NET6
+        public string RevisionDate { get; init; } = string.Empty;
         public List<BoardSchematicEntry> Schematics { get; init; } = new();
         public List<ComponentEntry> Components { get; init; } = new();
         public List<ComponentImageEntry> ComponentImages { get; init; } = new();

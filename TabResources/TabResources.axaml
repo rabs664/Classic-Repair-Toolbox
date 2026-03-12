@@ -7,7 +7,7 @@
 		<!-- Minimal hyperlink button style -->
 		<Style Selector="Button.LinkButton">
 			<Setter Property="Background" Value="Transparent" />
-			<Setter Property="Foreground" Value="#005A9E" />
+			<Setter Property="Foreground" Value="{DynamicResource AppThemeAccentBrush}" />
 			<Setter Property="Padding" Value="8,4" />
 			<Setter Property="BorderThickness" Value="0" />
 			<Setter Property="Cursor" Value="Hand" />
@@ -19,20 +19,26 @@
 			<Setter Property="Background" Value="Transparent" />
 		</Style>
 		<Style Selector="Button.LinkButton:pointerover TextBlock">
-			<Setter Property="Foreground" Value="#0078D4" />
+			<Setter Property="Foreground" Value="{DynamicResource AppThemeAccentLightBrush}" />
 		</Style>
 
 		<Style Selector="Button.LinkButton:pressed /template/ ContentPresenter">
 			<Setter Property="Background" Value="Transparent" />
+		</Style>
+
+		<Style Selector="Border.ResourceRow">
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="Border.ResourceRow:pointerover">
+			<Setter Property="Background" Value="{DynamicResource Table_RowHover_Bg}" />
 		</Style>
 	</UserControl.Styles>
 
 	<ScrollViewer>
 		<StackPanel Margin="16" Spacing="24">
 
-			<TextBlock Text="Resources for troubleshooting and information"
-					   FontSize="18"
-					   FontWeight="Bold" />
+			<TextBlock Text="Board specific resources for troubleshooting and information."
+					   FontSize="14" />
 
 			<!-- Local Files Section -->
 			<StackPanel Spacing="8">
@@ -40,7 +46,7 @@
 						   FontSize="14"
 						   FontWeight="Bold" />
 
-				<Border BorderBrush="#CCCCCC" BorderThickness="1">
+				<Border BorderBrush="{DynamicResource Table_BorderRowLine}" BorderThickness="1">
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
@@ -48,20 +54,23 @@
 						</Grid.RowDefinitions>
 
 						<!-- Header -->
-						<Grid Grid.Row="0" Background="#DDDDDD">
+						<Grid Grid.Row="0" Background="{DynamicResource Table_Header_Bg}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="200" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" Text="Category" Padding="8,4" />
-							<TextBlock Grid.Column="1" Text="Name" Padding="8,4" />
+							<TextBlock Grid.Column="0" Text="Category" FontWeight="Bold" Padding="8,4" Foreground="{DynamicResource Table_Header_Fg}" />
+							<TextBlock Grid.Column="1" Text="Name" FontWeight="Bold" Padding="8,4" Foreground="{DynamicResource Table_Header_Fg}" />
 						</Grid>
 
 						<!-- Items -->
-						<ItemsControl Grid.Row="1" x:Name="LocalFilesItemsControl">
+						<ItemsControl 
+							Grid.Row="1" 
+							Background="{DynamicResource Table_Bg}"
+							x:Name="LocalFilesItemsControl">
 							<ItemsControl.ItemTemplate>
 								<DataTemplate DataType="local:ResourceItem">
-									<Border BorderBrush="#EEEEEE" BorderThickness="0,0,0,1">
+									<Border Classes="ResourceRow" BorderBrush="{DynamicResource Table_BorderRowLine}" BorderThickness="0,0,0,1">
 										<Grid>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="200" />
@@ -69,6 +78,7 @@
 											</Grid.ColumnDefinitions>
 											<TextBlock Grid.Column="0"
 													   Text="{Binding Category}"
+													   Foreground="{DynamicResource Table_Fg}"
 													   Padding="8,4"
 													   VerticalAlignment="Center" />
 											<Button Grid.Column="1"
@@ -91,7 +101,7 @@
 						   FontSize="14"
 						   FontWeight="Bold" />
 
-				<Border BorderBrush="#CCCCCC" BorderThickness="1">
+				<Border BorderBrush="{DynamicResource Table_BorderRowLine}" BorderThickness="1">
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
@@ -99,20 +109,24 @@
 						</Grid.RowDefinitions>
 
 						<!-- Header -->
-						<Grid Grid.Row="0" Background="#DDDDDD">
+						<Grid Grid.Row="0" Background="{DynamicResource Table_Header_Bg}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="200" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" Text="Category" Padding="8,4" />
-							<TextBlock Grid.Column="1" Text="Name" Padding="8,4" />
+							<TextBlock Grid.Column="0" Text="Category" Padding="8,4" Foreground="{DynamicResource Table_Header_Fg}" />
+							<TextBlock Grid.Column="1" Text="Name" Padding="8,4" Foreground="{DynamicResource Table_Header_Fg}" />
 						</Grid>
 
 						<!-- Items -->
-						<ItemsControl Grid.Row="1" x:Name="WebLinksItemsControl">
+						<ItemsControl 
+							Grid.Row="1" 
+							x:Name="WebLinksItemsControl"
+							Background="{DynamicResource Table_Bg}"
+							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate DataType="local:ResourceItem">
-									<Border BorderBrush="#EEEEEE" BorderThickness="0,0,0,1">
+									<Border Classes="ResourceRow" BorderBrush="{DynamicResource Table_BorderRowLine}" BorderThickness="0,0,0,1">
 										<Grid>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="200" />
@@ -120,6 +134,7 @@
 											</Grid.ColumnDefinitions>
 											<TextBlock Grid.Column="0"
 													   Text="{Binding Category}"
+													   Foreground="{DynamicResource Table_Fg}"
 													   Padding="8,4"
 													   VerticalAlignment="Center" />
 											<Button Grid.Column="1"

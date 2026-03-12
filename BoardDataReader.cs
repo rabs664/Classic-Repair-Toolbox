@@ -108,8 +108,31 @@ namespace CRT
                     using var stream = new FileStream(excelPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                     using var package = new ExcelPackage(stream);
 
+                    string revisionDate = string.Empty;
+                    var schematicsSheet = package.Workbook.Worksheets[SheetBoardSchematics];
+                    if (schematicsSheet != null)
+                    {
+                        int limitRow = Math.Min(10, schematicsSheet.Dimension?.End.Row ?? 0);
+                        int limitCol = Math.Min(10, schematicsSheet.Dimension?.End.Column ?? 0);
+                        for (int r = 1; r <= limitRow; r++)
+                        {
+                            for (int c = 1; c <= limitCol; c++)
+                            {
+                                string text = GetCellText(schematicsSheet, r, c);
+                                if (text.StartsWith("# Revision date:", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    revisionDate = text.Substring("# Revision date:".Length).Trim();
+                                    break;
+                                }
+                            }
+                            if (!string.IsNullOrWhiteSpace(revisionDate))
+                                break;
+                        }
+                    }
+
                     var data = new BoardData
                     {
+                        RevisionDate = revisionDate,
                         Schematics = MapSchematics(ReadSheetRows(package, SheetBoardSchematics, SchematicsHeaders)),
                         Components = MapComponents(ReadSheetRows(package, SheetComponents, ComponentsHeaders)),
                         ComponentImages = MapComponentImages(ReadSheetRows(package, SheetComponentImages, ComponentImagesHeaders)),

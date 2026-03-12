@@ -83,6 +83,10 @@ namespace CRT
         {
             this.InitializeComponent();
 
+            // Aggressively steal focus from the Main window's TextBox when interacting with this window
+            this.PointerPressed += (_, _) => this.Focus();
+            this.PointerEntered += (_, _) => this.Focus();
+
             // Seed the normal-size tracker and restore saved window size, splitters and state
             this._normalWidth = UserSettings.HasComponentInfoWindowLayout
                 ? UserSettings.ComponentInfoWindowWidth

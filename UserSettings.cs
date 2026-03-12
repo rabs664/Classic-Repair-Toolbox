@@ -68,6 +68,7 @@ namespace CRT
         [JsonPropertyName("schematicsLabelFriendly")] public bool SchematicsLabelFriendly { get; set; } = false;
         [JsonPropertyName("schematicsLabelSelectedOnly")] public bool SchematicsLabelSelectedOnly { get; set; } = false;
         [JsonPropertyName("schematicsLabelsPanelExpanded")] public bool SchematicsLabelsPanelExpanded { get; set; } = true;
+        [JsonPropertyName("blinkSelected")] public bool BlinkSelected { get; set; } = false;
 
     }
 
@@ -208,6 +209,17 @@ namespace CRT
         {
             get => _data.SchematicsLabelsPanelExpanded;
             set { _data.SchematicsLabelsPanelExpanded = value; Save(); }
+        }
+
+        public static bool BlinkSelected
+        {
+            get => _data.BlinkSelected;
+            set
+            {
+                _data.BlinkSelected = value;
+                Logger.Info($"Setting changed: [BlinkSelected] [{value}]");
+                Save();
+            }
         }
 
         // Window placement — read-only; written atomically via SaveWindowPlacement
@@ -371,6 +383,7 @@ namespace CRT
                     Logger.Info($"        [DebugLogging] [{DebugLogging}]");
                     Logger.Info($"    Various other settings:");
                     Logger.Info($"        [LeftPanelWidth] [{_data.LeftPanelWidth:F1}]");
+                    Logger.Info($"        [BlinkSelected] [{BlinkSelected}]");
                     Logger.Info($"        [ComponentInfoWindowLayout] [{_data.ComponentInfoWindowState}] [{_data.ComponentInfoWindowWidth:F0}x{_data.ComponentInfoWindowHeight:F0}] [LeftRatio: {_data.ComponentInfoWindowLeftColumnRatio:F3}] [ThumbnailHeight: {_data.ComponentInfoWindowThumbnailRowHeight:F1}]");
                     Logger.Info($"        [ComponentInfoScrollAction] [{ComponentInfoScrollAction}]");
                     Logger.Info($"        [Region] [{Region}]");

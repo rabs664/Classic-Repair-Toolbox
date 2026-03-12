@@ -35,7 +35,7 @@
 		</Style>
 	</Window.Styles>
 
-	<Grid x:Name="RootGrid" ColumnDefinitions="*,4,*">
+	<Grid x:Name="RootGrid" ColumnDefinitions="*,4,*" Focusable="True">
 
 		<!-- Left panel: top image + horizontal splitter + bottom thumbnail gallery -->
 		<Grid x:Name="LeftPanelGrid"
@@ -54,7 +54,7 @@
 							   HorizontalAlignment="Center"
 							   VerticalAlignment="Center"
 							   FontSize="12"
-							   Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+							   Foreground="{DynamicResource Main_Header_Fg}" />
 
 					<!-- Wrap the Image in a Border to apply the background tightly to the image bounds -->
 					<Border x:Name="MainImageContainer"
@@ -206,7 +206,7 @@
                                     Width="110"
                                     Margin="0"
                                     CornerRadius="2"
-                                    Background="{DynamicResource AppThemeListBackgroundBrush}">
+                                    Background="{DynamicResource Main_Bg}">
 
 								<!-- Single cell: image + label overlay -->
 								<Grid MinHeight="40">
@@ -215,7 +215,7 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="10"
-                                               Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+                                               Foreground="{DynamicResource Main_Header_Fg}" />
 									<Image Source="{Binding ImageSource}"
                                            Stretch="Uniform"
                                            HorizontalAlignment="Stretch"
@@ -272,7 +272,7 @@
 					<SelectableTextBlock x:Name="InfoCategoryPartNumber"
 										 TextWrapping="Wrap"
 										 FontSize="12"
-										 Foreground="{DynamicResource AppThemeSecondaryTextBrush}"
+										 Foreground="{DynamicResource Main_Header_Fg}"
 										 IsVisible="False" />
 
 					<!-- 3. Component one-liner (hidden when empty) -->
@@ -286,7 +286,7 @@
 							<TextBlock Text="Component one-liner"
 						   FontSize="10"
 						   FontWeight="SemiBold"
-						   Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+						   Foreground="{DynamicResource Main_Header_Fg}" />
 						</Border>
 						<TextBox x:Name="InfoDescription"
 							 IsReadOnly="True"
@@ -306,7 +306,7 @@
 							<TextBlock Text="Image note"
 						   FontSize="10"
 						   FontWeight="SemiBold"
-						   Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+						   Foreground="{DynamicResource Main_Header_Fg}" />
 						</Border>
 						<TextBox x:Name="InfoNote"
 					 IsReadOnly="True"
@@ -330,7 +330,7 @@
 								<TextBlock Text="Component local files"
 										   FontSize="10"
 										   FontWeight="SemiBold"
-										   Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+										   Foreground="{DynamicResource Main_Header_Fg}" />
 							</StackPanel>
 						</Border>
 						<ListBox x:Name="LocalFilesList"
@@ -349,10 +349,10 @@
 									<Setter Property="CornerRadius" Value="4" />
 								</Style>
 								<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-									<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionHoverBrush}" />
+									<Setter Property="Background" Value="{DynamicResource List_Selected_Bg}" />
 								</Style>
 								<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-									<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionBrush}" />
+									<Setter Property="Background" Value="{DynamicResource List_Selected_Bg}" />
 								</Style>
 							</ListBox.Styles>
 							<ListBox.ItemTemplate>
@@ -369,7 +369,7 @@
 												   FontSize="12"
 												   Margin="0,0,8,0"
 												   VerticalAlignment="Center"
-												   Foreground="{DynamicResource AppThemeTextBrush}"
+												   Foreground="{DynamicResource Main_Fg}"
 												   TextTrimming="CharacterEllipsis" />
 									</Grid>
 								</DataTemplate>
@@ -392,7 +392,7 @@
 								<TextBlock Text="Component links"
 										   FontSize="10"
 										   FontWeight="SemiBold"
-										   Foreground="{DynamicResource AppThemeSecondaryTextBrush}" />
+										   Foreground="{DynamicResource Main_Header_Fg}" />
 							</StackPanel>
 						</Border>
 						<ListBox x:Name="LinksList"
@@ -411,10 +411,10 @@
 									<Setter Property="CornerRadius" Value="4" />
 								</Style>
 								<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-									<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionHoverBrush}" />
+									<Setter Property="Background" Value="{DynamicResource List_Selected_Bg}" />
 								</Style>
 								<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-									<Setter Property="Background" Value="{DynamicResource AppThemeListSelectionBrush}" />
+									<Setter Property="Background" Value="{DynamicResource List_Selected_Bg}" />
 								</Style>
 							</ListBox.Styles>
 							<ListBox.ItemTemplate>
@@ -431,7 +431,7 @@
 												   FontSize="12"
 												   Margin="0,0,8,0"
 												   VerticalAlignment="Center"
-												   Foreground="{DynamicResource AppThemeTextBrush}"
+												   Foreground="{DynamicResource Main_Fg}"
 												   TextTrimming="CharacterEllipsis" />
 									</Grid>
 								</DataTemplate>
