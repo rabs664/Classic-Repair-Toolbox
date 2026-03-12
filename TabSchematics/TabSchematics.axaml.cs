@@ -914,24 +914,6 @@ public partial class TabSchematics : UserControl
 
             if (!byLabel.TryGetValue(item.BoardLabel, out var rects) || rects.Count == 0) continue;
 
-            double minX = double.MaxValue;
-            double minY = double.MaxValue;
-            double maxX = double.MinValue;
-            double maxY = double.MinValue;
-            foreach (var r in rects)
-            {
-                if (r.X < minX) minX = r.X;
-                if (r.Y < minY) minY = r.Y;
-                if (r.Right > maxX) maxX = r.Right;
-                if (r.Bottom > maxY) maxY = r.Bottom;
-            }
-
-            double centerX = minX + (maxX - minX) / 2.0;
-            double centerY = minY + (maxY - minY) / 2.0;
-
-            double localX = contentRect.X + (centerX / imgWidth) * contentRect.Width;
-            double localY = contentRect.Y + (centerY / imgHeight) * contentRect.Height;
-
             var parts = item.SelectionKey?.Split('\u001F') ?? Array.Empty<string>();
             string friendlyName = parts.Length > 1 ? parts[1] : string.Empty;
             string technicalName = parts.Length > 2 ? parts[2] : string.Empty;
@@ -943,47 +925,58 @@ public partial class TabSchematics : UserControl
 
             if (lines.Count == 0) continue;
 
-            var tb = new TextBlock
+            string labelText = string.Join("\n", lines);
+
+            foreach (var r in rects)
             {
-                Text = string.Join("\n", lines),
-                FontSize = 11,
-                FontWeight = FontWeight.Bold,
-                TextAlignment = TextAlignment.Center
-            };
-            tb.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("Schematics_ComponentLabel_Fg"));
+                double centerX = r.X + (r.Width / 2.0);
+                double centerY = r.Y + (r.Height / 2.0);
 
-            var innerBorder = new Border
-            {
-                BorderThickness = new Avalonia.Thickness(1),
-                CornerRadius = new Avalonia.CornerRadius(4),
-                Padding = new Avalonia.Thickness(6, 4),
-                Child = tb
-            };
-            innerBorder.Bind(Border.BackgroundProperty, this.GetResourceObservable("Schematics_ComponentLabel_Bg"));
-            innerBorder.Bind(Border.BorderBrushProperty, this.GetResourceObservable("AppThemeBorderBrush"));
+                double localX = contentRect.X + (centerX / imgWidth) * contentRect.Width;
+                double localY = contentRect.Y + (centerY / imgHeight) * contentRect.Height;
 
-            var transformGroup = new TransformGroup();
-            transformGroup.Children.Add(new ScaleTransform(inverseScale, inverseScale));
+                var tb = new TextBlock
+                {
+                    Text = labelText,
+                    FontSize = 11,
+                    FontWeight = FontWeight.Bold,
+                    TextAlignment = TextAlignment.Center
+                };
+                tb.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("Schematics_ComponentLabel_Fg"));
 
-            var container = new Border
-            {
-                IsHitTestVisible = false,
-                Child = innerBorder,
-                RenderTransformOrigin = new RelativePoint(0.5, 0.5, RelativeUnit.Relative),
-                RenderTransform = transformGroup
-            };
+                var innerBorder = new Border
+                {
+                    BorderThickness = new Avalonia.Thickness(1),
+                    CornerRadius = new Avalonia.CornerRadius(4),
+                    Padding = new Avalonia.Thickness(6, 4),
+                    Child = tb
+                };
+                innerBorder.Bind(Border.BackgroundProperty, this.GetResourceObservable("Schematics_ComponentLabel_Bg"));
+                innerBorder.Bind(Border.BorderBrushProperty, this.GetResourceObservable("AppThemeBorderBrush"));
 
-            // Resolves exact dynamic layout dimensions to physically center everything exactly in the component
-            container.SizeChanged += (s, ev) =>
-            {
-                Canvas.SetLeft(container, localX - (ev.NewSize.Width / 2.0));
-                Canvas.SetTop(container, localY - (ev.NewSize.Height / 2.0));
-            };
+                var transformGroup = new TransformGroup();
+                transformGroup.Children.Add(new ScaleTransform(inverseScale, inverseScale));
 
-            Canvas.SetLeft(container, localX);
-            Canvas.SetTop(container, localY);
+                var container = new Border
+                {
+                    IsHitTestVisible = false,
+                    Child = innerBorder,
+                    RenderTransformOrigin = new RelativePoint(0.5, 0.5, RelativeUnit.Relative),
+                    RenderTransform = transformGroup
+                };
 
-            this.SchematicsLabelsCanvas.Children.Add(container);
+                // Resolves exact dynamic layout dimensions to physically center everything exactly in the component
+                container.SizeChanged += (s, ev) =>
+                {
+                    Canvas.SetLeft(container, localX - (ev.NewSize.Width / 2.0));
+                    Canvas.SetTop(container, localY - (ev.NewSize.Height / 2.0));
+                };
+
+                Canvas.SetLeft(container, localX);
+                Canvas.SetTop(container, localY);
+
+                this.SchematicsLabelsCanvas.Children.Add(container);
+            }
         }
     }
 

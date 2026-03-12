@@ -69,6 +69,7 @@ namespace CRT
         [JsonPropertyName("schematicsLabelSelectedOnly")] public bool SchematicsLabelSelectedOnly { get; set; } = false;
         [JsonPropertyName("schematicsLabelsPanelExpanded")] public bool SchematicsLabelsPanelExpanded { get; set; } = true;
         [JsonPropertyName("blinkSelected")] public bool BlinkSelected { get; set; } = false;
+        [JsonPropertyName("schematicsOrderByBoard")] public Dictionary<string, List<string>> SchematicsOrderByBoard { get; set; } = new();
 
     }
 
@@ -519,6 +520,25 @@ namespace CRT
 
             _data.LastSchematicByBoard[boardKey] = schematicName;
             Logger.Info($"Setting changed: [LastSchematicByBoard] [{boardKey}] [{schematicName}]");
+            Save();
+        }
+
+        // ###########################################################################################
+        // Retrieves the saved thumbnail sorting layout for a board, if present.
+        // ###########################################################################################
+        public static List<string>? GetSchematicsOrder(string boardKey)
+            => _data.SchematicsOrderByBoard.TryGetValue(boardKey, out var order) ? order : null;
+
+        // ###########################################################################################
+        // Persists custom dragged thumbnail layout ordering globally.
+        // ###########################################################################################
+        public static void SetSchematicsOrder(string boardKey, List<string> order)
+        {
+            if (string.IsNullOrWhiteSpace(boardKey) || order == null)
+                return;
+
+            _data.SchematicsOrderByBoard[boardKey] = order;
+            Logger.Info($"Setting changed: [SchematicsOrder] [{boardKey}] [{order.Count} sequenced]");
             Save();
         }
 

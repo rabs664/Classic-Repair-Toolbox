@@ -1,5 +1,7 @@
+- Fixed it could show board label in wrong position in schematric image
 - Fixed it did not save main region selection
 - Fixed `ESCAPE` did not close active component info popup, if set to "Open multiple windows for popup" #84
+- Added possibility to reorder schematic thumbnails with mouse drag/drop
 - Changed "Blink selected" checkbox is saved to settings
 - Changed display name in Windows from `Classic-Repair-Toolbox` to `Classic Repair Toolbox`
 - Changed a few colors
