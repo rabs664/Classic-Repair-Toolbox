@@ -117,6 +117,13 @@ There are several ways to get in contact with the developer:
 
 ## Technical topics
 
+### YouTube videos available as quick-help
+
+You can view this (one only for now) YouTube video as a helper for specific topics in _CRT_:
+
+- [How to do manual traces](https://youtu.be/fHSua0hHZ5E)
+
+
 ### Information automatically collected by CRT
 
 I want to be transparent here, and inform that I am gathering information about your setup, at every application launch, where the application does a mandatory "check-in":
