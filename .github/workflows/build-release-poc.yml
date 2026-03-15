@@ -392,6 +392,7 @@ jobs:
         run: |
           vpk pack \
             --packId ${{ env.PACK_ID }} \
+            --packTitle "Classic Repair Toolbox" \
             --packVersion ${{ steps.ver.outputs.version }} \
             --packDir publish/macos-arm64 \
             --mainExe ${{ env.EXE_UNIX }} \
@@ -404,6 +405,7 @@ jobs:
         run: |
           vpk pack \
             --packId ${{ env.PACK_ID }} \
+            --packTitle "Classic Repair Toolbox" \
             --packVersion ${{ steps.ver.outputs.version }} \
             --packDir publish/macos-x64 \
             --mainExe ${{ env.EXE_UNIX }} \
