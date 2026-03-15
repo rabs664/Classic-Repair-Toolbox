@@ -47,7 +47,7 @@
     <Compile Update="Main.axaml.cs">
       <DependentUpon>Main.axaml</DependentUpon>
     </Compile>
-    <Compile Update="TabOverview\TabOverview.axaml.cs">
+    <Compile Update="Tabs\Overview\TabOverview.axaml.cs">
       <DependentUpon>TabOverview.axaml</DependentUpon>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
