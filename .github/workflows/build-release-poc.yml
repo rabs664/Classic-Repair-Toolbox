@@ -309,7 +309,7 @@ jobs:
             --packVersion ${{ steps.ver.outputs.version }} \
             --packDir publish/linux-x64 \
             --mainExe ${{ env.EXE_UNIX }} \
-            --icon "Assets/CRT_icon.ico" \
+            --icon "Assets/CRT_icon.png" \
             --outputDir velopack-output
 
       - name: Upload Velopack artifacts
