@@ -306,6 +306,7 @@ jobs:
         run: |
           vpk pack \
             --packId ${{ env.PACK_ID }} \
+            --packTitle "Classic Repair Toolbox" \
             --packVersion ${{ steps.ver.outputs.version }} \
             --packDir publish/linux-x64 \
             --mainExe ${{ env.EXE_UNIX }} \
