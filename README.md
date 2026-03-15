@@ -89,7 +89,7 @@ When a new version is released it will be shown to you in the application, and y
 Note that .NET is embedded in application, which means you do not need to have this installed. It also does mean that even if you have .NET installed on your computer, then it will still use the one embedded in application. As .NET6 is the newest version supported on **Windows 7**, then this is the .NET version included with the Windows 32-bit installer.
 
 > [!CAUTION]
-> .NET6 has gone **End-of-Life in 2024**, and has not received any security hotfixes since then!
+> .NET6 used for Windows 32-bit has gone **End-of-Life in 2024**, and has not received any security hotfixes since then!
 
 If possible then you should use the newer _CRT_ 64-bit installer, which embeds the newest available [.NET10 LTS](https://github.com/dotnet/core/blob/main/release-notes/10.0/README.md) (Long-Term-Support) at release date.
 
