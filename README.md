@@ -21,6 +21,7 @@ It is (for now) primarily dedicated to Commodore, and have several built-in prof
 - [Help wanted](#help-wanted)
 - [Contact developer](#contact-developer)
 - [Technical topics](#technical-topics)
+- [YouTube videos available as quick-help](#youtube-videos-available-as-quick-help)
 - [Information automatically collected by CRT](#information-automatically-collected-by-crt)
 - [Commandline parameters](#commandline-parameters)
 - [How to contribute with data to CRT GitHub repository?](#how-to-contribute-with-data-to-crt-github-repository)
@@ -116,6 +117,13 @@ There are several ways to get in contact with the developer:
 
 
 ## Technical topics
+
+### YouTube videos available as quick-help
+
+You can view this (one only for now) YouTube video as a helper for specific topics in _CRT_:
+
+- [How to do manual traces](https://youtu.be/fHSua0hHZ5E)
+
 
 ### Information automatically collected by CRT
 
