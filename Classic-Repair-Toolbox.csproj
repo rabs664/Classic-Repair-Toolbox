@@ -13,7 +13,7 @@
 		<RollForward>LatestMajor</RollForward>
 		<NoWarn>$(NoWarn);NETSDK1138</NoWarn>
         <Nullable>enable</Nullable>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationManifest>Main\app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <RuntimeIdentifiers>win-x86;win-x64;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
