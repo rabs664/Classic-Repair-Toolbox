@@ -1,13 +1,13 @@
 ﻿using CRT;
+using Handlers.OnlineHandling;
 using OfficeOpenXml;
-using OnlineHandling;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataHandling
+namespace Handlers.DataHandling
 {
     public static class DataManager
     {

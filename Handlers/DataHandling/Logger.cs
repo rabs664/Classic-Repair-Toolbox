@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace DataHandling
+namespace Handlers.DataHandling
 {
     public enum LogCategory
     {

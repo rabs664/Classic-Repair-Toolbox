@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace DataHandling
+namespace Handlers.DataHandling
 {
     // ###########################################################################################
     // Persisted user preferences model. Defaults to enabled for all online features.

@@ -1,4 +1,4 @@
-﻿namespace DataHandling
+﻿namespace Handlers.DataHandling
 {
     // ###########################################################################################
     // Represents a single hardware/board entry from the main Excel data file.
