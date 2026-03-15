@@ -21,6 +21,7 @@ It is (for now) primarily dedicated to Commodore, and have several built-in prof
 - [Help wanted](#help-wanted)
 - [Contact developer](#contact-developer)
 - [Technical topics](#technical-topics)
+- [YouTube videos available as quick-help](#youtube-videos-available-as-quick-help)
 - [Information automatically collected by CRT](#information-automatically-collected-by-crt)
 - [Commandline parameters](#commandline-parameters)
 - [How to contribute with data to CRT GitHub repository?](#how-to-contribute-with-data-to-crt-github-repository)
