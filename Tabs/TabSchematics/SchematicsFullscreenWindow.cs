@@ -3,7 +3,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using System;
 
-namespace CRT
+namespace Tabs.TabSchematics
 {
     public sealed class SchematicsFullscreenWindow : Window
     {

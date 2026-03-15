@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TabSchematics
+namespace Tabs.TabSchematics
 {
     // ###########################################################################################
     // Spatial index for fast "visible rect" queries of many component highlight rectangles.

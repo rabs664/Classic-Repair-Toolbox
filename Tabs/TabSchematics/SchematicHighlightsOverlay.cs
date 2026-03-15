@@ -4,7 +4,7 @@ using Avalonia.Media;
 using System;
 using System.Collections.Generic;
 
-namespace TabSchematics
+namespace Tabs.TabSchematics
 {
     // ###########################################################################################
     // Draws component highlight rectangles over a schematic image.

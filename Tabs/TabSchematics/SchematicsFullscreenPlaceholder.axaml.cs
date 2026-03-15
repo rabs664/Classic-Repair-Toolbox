@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using System.Collections.ObjectModel;
-using TabSchematics;
+using Tabs.TabSchematics;
 
 namespace CRT
 {

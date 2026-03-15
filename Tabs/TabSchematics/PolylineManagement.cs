@@ -10,9 +10,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using TabSchematics;
 
-namespace Classic_Repair_Toolbox.TabSchematics
+namespace Tabs.TabSchematics
 {
     // ###########################################################################################
     // Manages the creation, interaction, and rendering of polylines drawn on the schematics.

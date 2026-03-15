@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TabSchematics
+namespace Tabs.TabSchematics
 {
     // ###########################################################################################
     // Represents a single schematic thumbnail item for display in the Schematics tab gallery.

@@ -5,7 +5,6 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
-using Classic_Repair_Toolbox.TabSchematics;
 using DataHandling;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TabSchematics;
+using Tabs.TabSchematics;
 
 namespace CRT;
 
