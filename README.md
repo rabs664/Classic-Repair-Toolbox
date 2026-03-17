@@ -122,6 +122,7 @@ There are several ways to get in contact with the developer:
 
 You can view the below _Quick Help_ videos for introduction to specific topics in _CRT_:
 
+- [Short introduction](https://youtu.be/8UGEnb4w_PY)
 - [How to do manual traces](https://youtu.be/JUNXeCHsrME)
 
 
